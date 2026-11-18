@@ -1,0 +1,20 @@
+{
+  "val": {
+    "metrics/precision(B)": 0.7923928733573513,
+    "metrics/recall(B)": 0.6959935524193438,
+    "metrics/mAP50(B)": 0.7760885935066664,
+    "metrics/mAP50-95(B)": 0.4437356056409528,
+    "fitness": 0.4437356056409528
+  },
+  "test": {
+    "metrics/precision(B)": 0.8312928705650635,
+    "metrics/recall(B)": 0.8546365914786966,
+    "metrics/mAP50(B)": 0.8393340830918811,
+    "metrics/mAP50-95(B)": 0.5097501651500604,
+    "fitness": 0.5097501651500604
+  },
+  "train_dir": "treinamento_corrigido",
+  "epochs": 20,
+  "imgsz": 416,
+  "best_sha256": "1441bef66465a9564751e7120ed6e614339b4f5e654489c48c2acb81bbfb2ba0"
+}

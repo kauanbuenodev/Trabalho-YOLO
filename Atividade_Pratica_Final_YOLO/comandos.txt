@@ -1,6 +1,11 @@
-# Comandos executados (PowerShell na pasta da atividade)
-python prepare_dataset.py dataset/original/detection
-yolo detect train model="../Atividade_Pratica_YOLO_Windows/yolo26n.pt" data="dataset/ready/data.yaml" epochs=20 imgsz=640 batch=4 device=cpu workers=0 project="resultados" name="treino_final"
-yolo detect val model="runs/detect/resultados/treino_final/weights/best.pt" data="dataset/ready/data.yaml" device=cpu project="resultados" name="validacao"
-yolo detect predict model="runs/detect/resultados/treino_final/weights/best.pt" source="dataset/ready/unseen/images" conf=0.25 save=True save_txt=True save_conf=True project="resultados" name="imagens_ineditas"
-python compare_unseen.py
+# Execução corrigida — PowerShell na raiz do repositório
+# A preparação recebe a pasta detection extraída do dataset original.
+python scripts/corrigir_dados.py final CAMINHO_DA_PASTA_DETECTION
+python scripts/conferir_entrega.py --atividade final --somente-dados
+python scripts/treinar_corrigido.py final
+python scripts/analisar_resultados.py final
+python scripts/registrar_divisoes.py
+
+# Configuração efetiva: YOLO26n inicial, 20 épocas, imgsz=640, batch=4, CPU, workers=0, seed=2026.
+# Modelo entregue: Atividade_Pratica_Final_YOLO/modelo/best.pt.
+# Avaliação/novas inferências: python executar.py final avaliar / inferir.

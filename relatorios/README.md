@@ -12,4 +12,4 @@ Os três relatórios estão disponíveis abaixo, na ordem das atividades. A leit
 | 02 — YOLO com dataset do Kaggle | [Abrir PDF](02_YOLO_Kaggle.pdf) | [Baixar PDF](02_YOLO_Kaggle.pdf?raw=true) | [Ler no GitHub](../Atividade_Pratica_II_YOLO_Kaggle/relatorio.md) |
 | 03 — Projeto final | [Abrir PDF](03_Projeto_Final_YOLO.pdf) | [Baixar PDF](03_Projeto_Final_YOLO.pdf?raw=true) | [Ler no GitHub](../Atividade_Pratica_Final_YOLO/relatorio.md) |
 
-As limitações da avaliação das atividades 2 e final estão documentadas nos relatórios e na [auditoria](../docs/CONFERENCIA.md).
+Os relatórios 2 e final foram atualizados após a correção da separação dos dados e a repetição dos treinamentos. A verificação e os limites da avaliação estão documentados em [conferência](../docs/CONFERENCIA.md).

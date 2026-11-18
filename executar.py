@@ -3,6 +3,7 @@ from pathlib import Path
 import argparse
 import os
 import runpy
+import sys
 
 ROOT = Path(__file__).resolve().parent
 PROJECTS = {"1": "Atividade_Pratica_YOLO_Windows", "2": "Atividade_Pratica_II_YOLO_Kaggle", "final": "Atividade_Pratica_Final_YOLO"}
@@ -21,6 +22,12 @@ def main():
             return
         runpy.run_path(str(project / ("compare_predictions.py" if args.atividade == "2" else "compare_unseen.py")), run_name="__main__")
         return
+    if args.atividade in {"2", "final"}:
+        sys.path.insert(0,str(ROOT / "scripts"))
+        from conferir_entrega import check
+        verification=check(args.atividade,figures=False)
+        if verification['errors']:
+            raise SystemExit('Dados divergentes ou sobrepostos: '+ '; '.join(verification['errors']))
     from ultralytics import YOLO
     output = ROOT / "novas_execucoes" / args.atividade
     output.mkdir(parents=True, exist_ok=True)
@@ -43,21 +50,21 @@ def main():
         # Os nomes e IDs do COCO permanecem os mesmos do treino original.
         import ultralytics
         original = Path(ultralytics.__file__).parent / "cfg/datasets/coco8.yaml"
-        import yaml
-        config = yaml.safe_load(original.read_text(encoding="utf-8"))
+        from ultralytics.utils import YAML
+        config = YAML.load(original)
         config.pop("download", None)
     else:
         config = {"train": "images/train", "val": "images/val", "names": {0: "nao_maduro", 1: "maduro"}}
         if args.atividade == "2":
             config["test"] = "images/test"
-    import yaml
+    from ultralytics.utils import YAML
     config["path"] = data_root.as_posix()
     yaml_path = output / "data_execucao.yaml"
-    yaml_path.write_text(yaml.safe_dump(config, allow_unicode=True), encoding="utf-8")
+    YAML.save(yaml_path, config)
     if args.acao == "avaliar":
         YOLO(str(project / "modelo/best.pt")).val(data=str(yaml_path), split="test" if args.atividade == "2" else "val", imgsz=size, device="cpu", workers=0, project=str(output), name="avaliacao")
     else:
-        YOLO(str(project / "modelo/yolo26n.pt")).train(data=str(yaml_path), epochs=epochs, imgsz=size, batch=batch, device="cpu", workers=0, project=str(output), name="treino")
+        YOLO(str(project / "modelo/yolo26n.pt")).train(data=str(yaml_path), epochs=epochs, imgsz=size, batch=batch, device="cpu", workers=0, seed=42 if args.atividade == "2" else (2026 if args.atividade == "final" else 0), project=str(output), name="treino")
 
 
 if __name__ == "__main__":

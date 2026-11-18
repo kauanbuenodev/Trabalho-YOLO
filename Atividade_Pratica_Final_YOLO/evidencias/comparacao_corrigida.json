@@ -1,0 +1,95 @@
+{
+  "activity": "final",
+  "total_gt": 17,
+  "images": 5,
+  "totals": {
+    "imagens_ineditas": {
+      "tp": 15,
+      "fp": 4,
+      "fn": 2,
+      "erros_classe": 0,
+      "pred": 19
+    }
+  },
+  "records": [
+    {
+      "imagem": "riped_tomato_17.jpeg",
+      "gt": 2,
+      "classes": [
+        0,
+        1
+      ],
+      "imagens_ineditas": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "erros_classe": 0,
+        "pred": 2
+      }
+    },
+    {
+      "imagem": "riped_tomato_4.jpeg",
+      "gt": 2,
+      "classes": [
+        1
+      ],
+      "imagens_ineditas": {
+        "tp": 2,
+        "fp": 1,
+        "fn": 0,
+        "erros_classe": 0,
+        "pred": 3
+      }
+    },
+    {
+      "imagem": "unriped_tomato_11.jpeg",
+      "gt": 1,
+      "classes": [
+        0
+      ],
+      "imagens_ineditas": {
+        "tp": 1,
+        "fp": 0,
+        "fn": 0,
+        "erros_classe": 0,
+        "pred": 1
+      }
+    },
+    {
+      "imagem": "unriped_tomato_31.jpeg",
+      "gt": 6,
+      "classes": [
+        0
+      ],
+      "imagens_ineditas": {
+        "tp": 5,
+        "fp": 1,
+        "fn": 1,
+        "erros_classe": 0,
+        "pred": 6
+      }
+    },
+    {
+      "imagem": "unriped_tomato_62.jpeg",
+      "gt": 6,
+      "classes": [
+        0
+      ],
+      "imagens_ineditas": {
+        "tp": 5,
+        "fp": 2,
+        "fn": 1,
+        "erros_classe": 0,
+        "pred": 7
+      }
+    }
+  ],
+  "samples": [
+    "riped_tomato_17.jpeg",
+    "riped_tomato_4.jpeg",
+    "unriped_tomato_11.jpeg",
+    "unriped_tomato_31.jpeg",
+    "unriped_tomato_62.jpeg"
+  ],
+  "iou": 0.5
+}

@@ -1,11 +1,23 @@
-# Estado do material
+# Estado da entrega
 
-Incluído: três enunciados, relatórios com figuras em PDF/Markdown, modelos treinados, datasets efetivamente usados, predições, métricas por época, parâmetros e scripts de reprodução.
+**Kauan Reis Bueno · 8 Período · 17/11/2026**
 
-**Correção necessária antes da entrega definitiva:** a auditoria por SHA-256 identificou fotos idênticas entre treino/validação/teste da prática 2 e entre treino/validação/reserva da final. As cinco imagens da reserva final têm cópias em outras divisões. Os modelos e as métricas preservados aqui documentam a execução anterior; não constituem uma avaliação independente. É necessário agrupar as duplicações, refazer as divisões, treinar novamente e atualizar as avaliações e imagens. A lista dos pares está em `CONFERENCIA.md`.
+As duplicações da divisão anterior foram corrigidas antes de novos treinamentos. As atividades 2 e final têm novos checkpoints, métricas, predições, comparações e relatórios. Os arquivos antigos de dados e experimentos da versão anterior permanecem apenas no histórico do Git e nas cópias locais de histórico, para rastreabilidade; não integram a avaliação atual.
 
-Identificação preenchida nos três relatórios: Kauan Reis Bueno; turma 8 Período; data 17/11/2026. Os gráficos e imagens foram produzidos nas execuções; o registro textual da atividade 1 é uma transcrição resumida, não uma captura de terminal. Os prints de terminal solicitados nos enunciados ainda precisam ser adicionados se exigidos como captura literal pelo professor.
+## Verificações concluídas
 
-A conferência para o repositório corrigiu o total anotado da reserva inédita da final de 25 para **20 objetos** no relatório, no CSV e no script. As contagens por imagem e os 19 TP / 1 FP / 1 FN permaneceram os mesmos.
+- 177 arquivos originais → 89 conteúdos distintos por SHA-256 → 78 representantes após agrupar versões próximas por pHash (distância ≤ 8).
+- Uma anotação de altura zero da origem é descartada no processo de conferência.
+- Atividade 2: 55 imagens de treino, 15 de validação e 8 de teste; duas classes em cada conjunto.
+- Final: 58 imagens de treino e 15 de validação (73 anotadas), além de cinco inéditas reservadas antes do treino.
+- Novos treinamentos de 20 épocas, partindo do YOLO26n pré-treinado de origem.
+- Novos pesos, avaliações, cinco painéis visuais por atividade e comparação dos limiares 0,25/0,70 na atividade 2.
+- Não foram encontrados pares sobrepostos por SHA-256 ou pHash ≤ 8 entre as divisões corrigidas.
 
-O dataset preparado está incluído sem duplicar seus arquivos originais brutos em cada atividade. Os checkpoints repetidos em `runs/.../weights/` foram concentrados em `modelo/best.pt`; `last.pt` e ambientes virtuais não integram esta cópia. Os caminhos históricos nos arquivos de parâmetros continuam documentando a execução original.
+## Limites e evidências
+
+Os conjuntos de avaliação são pequenos. A checagem de similaridade não prova independência de toda cena possível; fotos externas são recomendadas para ampliar a avaliação. A atividade 1 preserva sua execução COCO8 e não exigiu novo treino.
+
+Os relatórios apresentam imagens detectadas, referências anotadas, gráficos, parâmetros, métricas por época e registros textuais de execução. Capturas literais de tela do terminal solicitadas nos enunciados ainda não foram incluídas.
+
+Os PDFs estão sincronizados nas pastas de cada atividade e em relatorios/. A divisão efetiva está em evidencias/divisoes.csv; o mapa completo da preparação e exclusões está em evidencias/preparacao_corrigida.json. Os checkpoints entregues ficam em modelo/best.pt, sem repetir os checkpoints intermediários no repositório.

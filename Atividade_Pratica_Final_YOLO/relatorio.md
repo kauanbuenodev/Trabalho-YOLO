@@ -1,80 +1,127 @@
-# Relatório técnico — Atividade prática final YOLO
-
-> **Correção após auditoria:** foram encontradas fotos idênticas em divisões diferentes (ver ../docs/CONFERENCIA.md). As métricas abaixo registram a execução original com vazamento de dados e não comprovam generalização. Na final, todas as cinco imagens reservadas têm cópias no treino/validação e não atendem ao requisito de imagens inéditas. É necessário refazer a divisão, o treino e a avaliação.
+# Relatório técnico — Atividade prática final: detecção com YOLO
 
 **Nome:** Kauan Reis Bueno  
 **Turma:** 8 Período  
 **Data:** 17/11/2026
 
-## 1. Problema e motivação
+## Projeto e preparação dos dados
 
-O projeto detecta tomates em dois estágios de maturação: não maduro e maduro. A tarefa foi escolhida como exemplo de visão computacional aplicada à agricultura; caixas delimitadoras informam também a posição dos frutos na imagem.
+O projeto localiza tomates e distingue dois estágios de maturação: `0: nao_maduro` (original `unriped`) e `1: maduro` (original `riped`). A localização é representada por caixas delimitadoras.
 
-## 2. Dataset e classes
+Fonte: **Ripe and Unripe Tomatoes Dataset**, de Suman Kunwar, [Kaggle](https://www.kaggle.com/datasets/sumn2u/riped-and-unriped-tomato-dataset/versions/2). Licença declarada: **CC BY-SA 4.0**. O conjunto original contém 177 arquivos de imagem; a finalidade é apoiar aplicações de visão computacional na agricultura.
 
-Dataset: **Ripe and Unripe Tomatoes Dataset**, de Suman Kunwar, Kaggle: https://www.kaggle.com/datasets/sumn2u/riped-and-unriped-tomato-dataset/versions/2. Foram pareadas 177 imagens JPEG e anotações de detecção YOLO; mapeamento: classe 0 `nao_maduro` (original `unriped`) e classe 1 `maduro` (original `riped`). Licença declarada: CC BY-SA 4.0. Uma caixa de altura zero foi removida apenas das cópias preparadas. Divisão: 137 treino, 35 validação e cinco imagens inéditas.
+A revisão identificou cópias idênticas e versões muito semelhantes de uma mesma fotografia. Antes da nova divisão, foram calculados SHA-256 e hash perceptual (pHash, 64 bits). Arquivos com mesmo SHA-256 ou distância de Hamming de pHash ≤ 8 foram agrupados. Foi mantida uma imagem por grupo, escolhendo o arquivo com mais caixas válidas e desempate pelo nome. A anotação usada é a do próprio arquivo selecionado; não foram combinadas caixas de imagens diferentes.
 
-## 3. Modelo e treinamento
+Foram encontrados 89 arquivos distintos por SHA-256. Após o agrupamento visual, restaram **78 imagens representativas**. A escolha de um subconjunto menor evita que cópias ou versões da mesma fotografia atravessem os grupos de treino e avaliação. Uma caixa de altura zero identificada na origem foi descartada durante a conferência das anotações. Os representantes selecionados contêm 459 caixas válidas no total.
 
-Foi utilizado YOLO26n com pesos pré-treinados, 20 épocas, imagem 640, lote 4 e CPU (`workers=0`). O melhor checkpoint está em `modelo/best.pt`.
+A divisão usa ordem determinística e estratificação pela classe majoritária, preservando as duas classes em cada grupo. O mapa dos 177 arquivos para seus representantes e a divisão exata estão em `evidencias/preparacao_corrigida.json` e `evidencias/divisoes.csv`.
 
-## 4. Métricas e interpretação
+| Divisão | Imagens | Objetos anotados |
+|---|---:|---:|
+| train | 58 | 324 |
+| val | 15 | 118 |
+| ineditas | 5 | 17 |
 
-- Precision: 0,874
-- Recall: 0,800
-- mAP50: 0,859
+A conferência após a preparação não encontrou duplicações exatas nem pares com distância pHash ≤ 8 entre divisões. Esse critério não garante ausência de toda semelhança possível entre cenas. O teste em fotografias de outras fontes continua sendo uma melhoria recomendada.
 
-Precision é a proporção das detecções emitidas que estão corretas. Recall é a proporção dos objetos reais que foram encontrados. mAP50 resume a precisão média por classe considerando como correspondência uma sobreposição IoU de pelo menos 0,50 entre caixa prevista e caixa anotada. Valores de validação no melhor checkpoint: mAP50-95 0,552, em 35 imagens e 210 instâncias.
+As 58 imagens de treino e 15 de validação somam **73 imagens anotadas**, acima do mínimo de 60. As **cinco imagens inéditas** foram reservadas antes do treinamento e não aparecem, nem por cópia ou pelo critério de similaridade aplicado, no treino ou na validação deste modelo.
 
-![Curvas do treinamento final](runs/detect/resultados/treino_final/results.png)
+### Estrutura e configuração
 
-## 5. Imagens inéditas
+```text
+dataset/ready/
+├── images/train/
+├── images/val/
+├── labels/train/
+├── labels/val/
+├── unseen/images/
+├── unseen/labels_referencia/
+└── data.yaml
+```
 
-A comparação entre as previsões e as anotações de referência foi feita nas cinco imagens reservadas por nome de arquivo. As previsões estão em `runs/detect/resultados/imagens_ineditas/` e as referências em `dataset/ready/unseen/labels_referencia/`. A auditoria posterior encontrou cópias idênticas dessas imagens em treino/validação; por isso, essa reserva não constitui uma avaliação em imagens inéditas.
+```yaml
+path: dataset/ready
+train: images/train
+val: images/val
+names:
+  0: nao_maduro
+  1: maduro
+```
 
-| Imagem inédita | TP / FP / FN | Observação |
-|---|---|---|
-| riped_tomato_29.jpeg | 1 / 0 / 0 | Classe maduro localizada |
-| riped_tomato_47.jpeg | 2 / 0 / 0 | Duas caixas corretas |
-| unriped_tomato_33.jpeg | 9 / 1 / 1 | Um falso positivo e uma omissão |
-| unriped_tomato_41.jpeg | 1 / 0 / 0 | Classe nao_maduro localizada |
-| unriped_tomato_70.jpeg | 6 / 0 / 0 | Seis caixas corretas |
+Exemplo de anotação correspondente a `riped_tomato_17.jpeg` (classe, centro X, centro Y, largura e altura normalizados):
 
-TP/FP/FN foram contados comparando classe e IoU ≥ 0,50 com as anotações reservadas. No total das cinco imagens (20 objetos anotados), houve 19 TP, 1 FP e 1 FN. As previsões ilustradas foram salvas em `runs/detect/resultados/imagens_ineditas/`; a tabela completa está em `evidencias/comparacao_ineditas.csv`.
+```text
+1 0.248198 0.590128 0.421386 0.652296
+0 0.698540 0.554046 0.496948 0.726336
+```
 
-### Imagens com as detecções
+## Treinamento e avaliação
 
-![Tomates maduros: riped_tomato_29](runs/detect/resultados/imagens_ineditas/riped_tomato_29.jpg)
+Modelo: **YOLO26n** com pesos pré-treinados de origem; os pesos antigos treinados com a divisão inadequada não foram reutilizados. Foram executadas **20 épocas**, `imgsz=640`, `batch=4`, `device=cpu`, `workers=0` e `seed=2026`. Ambiente: Windows 11, Python 3.12.10, Ultralytics 8.4.214 e PyTorch 2.15.0+cpu, em AMD Ryzen 5 5500U.
 
-![Tomates maduros: riped_tomato_47](runs/detect/resultados/imagens_ineditas/riped_tomato_47.jpg)
+Os pesos do melhor checkpoint estão em `modelo/best.pt`. A seleção do checkpoint usou a validação; a divisão de teste/reserva não participou da atualização dos pesos nem da escolha do checkpoint.
 
-![Tomates não maduros: unriped_tomato_33](runs/detect/resultados/imagens_ineditas/unriped_tomato_33.jpg)
+**Validação:** Precision **0,786**, Recall **0,677**, mAP50 **0,731** e mAP50-95 **0,418**.
 
-![Tomate não maduro: unriped_tomato_41](runs/detect/resultados/imagens_ineditas/unriped_tomato_41.jpg)
+Precision mede a proporção de previsões corretas entre as detecções emitidas; Recall mede a fração dos objetos reais que o modelo encontrou. mAP50 é a média, entre classes, da área sob a curva de precisão e revocação com correspondência de caixas em IoU ≥ 0,50. mAP50-95 agrega vários limiares de IoU e exige localização mais rigorosa. Os valores do Ultralytics não são a mesma coisa que a contagem fixa de TP/FP/FN em `conf=0.25`.
 
-![Tomates não maduros: unriped_tomato_70](runs/detect/resultados/imagens_ineditas/unriped_tomato_70.jpg)
+![Curvas do novo treinamento](runs/detect/resultados/treino_final_corrigido/results.png)
 
-## 6. Dificuldades e melhorias
+## Resultados nas imagens reservadas
 
-Uma anotação de origem tinha altura zero e foi removida somente das cópias preparadas. O conjunto é pequeno e tem variedade limitada; nas cinco imagens inéditas houve um falso positivo e uma omissão. Mais imagens diversas, revisão de rótulos e caixas e validação em diferentes cenários ajudariam a medir e aumentar a generalização. Cinco imagens são uma demonstração didática, não prova de robustez operacional.
+A comparação usa classe correta e IoU ≥ 0,50, com pareamento de uma previsão por objeto. Erros de classe aparecem como falso positivo e falso negativo; a coluna de erro de classe indica esse subconjunto, sem somá-lo novamente aos totais.
+
+Nas cinco imagens inéditas, há **17 objetos anotados**. Em `conf=0.25`, o modelo retornou **15 TP, 4 FP e 2 FN**, com 0 erro(s) de classe identificado(s) no pareamento.
+
+| Imagem | Objetos de referência | TP | FP | FN | Erros de classe |
+|---|---:|---:|---:|---:|---:|
+| riped_tomato_17.jpeg | 2 | 2 | 0 | 0 | 0 |
+| riped_tomato_4.jpeg | 2 | 2 | 1 | 0 | 0 |
+| unriped_tomato_11.jpeg | 1 | 1 | 0 | 0 | 0 |
+| unriped_tomato_31.jpeg | 6 | 5 | 1 | 1 | 0 |
+| unriped_tomato_62.jpeg | 6 | 5 | 2 | 1 | 0 |
+
+Cada painel apresenta a imagem original, as caixas da anotação de referência e as previsões do modelo.
+
+### riped_tomato_17.jpeg
+
+![Original, referência e predições de riped_tomato_17.jpeg](evidencias/comparacoes_visuais/riped_tomato_17.jpg)
+
+### riped_tomato_4.jpeg
+
+![Original, referência e predições de riped_tomato_4.jpeg](evidencias/comparacoes_visuais/riped_tomato_4.jpg)
+
+### unriped_tomato_11.jpeg
+
+![Original, referência e predições de unriped_tomato_11.jpeg](evidencias/comparacoes_visuais/unriped_tomato_11.jpg)
+
+### unriped_tomato_31.jpeg
+
+![Original, referência e predições de unriped_tomato_31.jpeg](evidencias/comparacoes_visuais/unriped_tomato_31.jpg)
+
+### unriped_tomato_62.jpeg
+
+![Original, referência e predições de unriped_tomato_62.jpeg](evidencias/comparacoes_visuais/unriped_tomato_62.jpg)
 
 ## Respostas às seis questões
 
-1. **Problema escolhido:** localizar e classificar tomates em dois estágios de maturação; o tema oferece aplicação agrícola e classes visuais relacionadas.
-2. **Dados e classes:** 177 imagens anotadas, distribuídas em 137 treino, 35 validação e cinco inéditas. Fonte Kaggle indicada acima; classes `nao_maduro` e `maduro`; arquivos JPEG e rótulos de caixas YOLO.
-3. **Modelo e épocas:** YOLO26n pré-treinado, 20 épocas, `imgsz=640`, `batch=4`, CPU (`workers=0`).
-4. **Métricas:** Precision 0,874, Recall 0,800, mAP50 0,859 (validação; mAP50-95 0,552). Precision mede acerto entre as previsões, recall mede cobertura dos objetos reais, e mAP50 agrega a precisão por classe com IoU 0,50.
-5. **Reconhecimento inédito:** quatro imagens tiveram todas as caixas correspondidas; em `unriped_tomato_33.jpeg` houve um falso positivo e uma omissão. No conjunto de cinco, 19 TP, 1 FP e 1 FN comparando classe e IoU ≥0,50.
-6. **Dificuldades e melhorias:** uma caixa inválida (altura zero) foi removida nas cópias; o conjunto e a reserva inédita são pequenos. Mais exemplos diversos e rótulos revisados podem melhorar a generalização.
+1. **Problema escolhido:** localizar tomates e distinguir maduros e não maduros, como demonstração de visão computacional aplicada à agricultura.
+2. **Imagens e classes:** dos 177 arquivos públicos originais, foram selecionadas 78 imagens após controle de duplicações. Foram usadas 58 para treino e 15 para validação, totalizando 73 imagens anotadas, além de cinco inéditas reservadas. Classes: `nao_maduro` e `maduro`; origem e licença indicadas no início.
+3. **Modelo e épocas:** YOLO26n com pesos pré-treinados de origem, 20 épocas, resolução 640, lote 4 e CPU. O treinamento foi refeito após a correção dos dados.
+4. **Métricas:** Precision **0,786**, Recall **0,677**, mAP50 **0,731** e mAP50-95 **0,418**. Precision mede acerto entre as detecções emitidas; Recall mede cobertura dos objetos anotados; mAP50 integra precisão e revocação por classe em IoU 0,50.
+5. **Objetos nas imagens inéditas:** 17 objetos anotados, 15 correspondências corretas, 4 falsos positivos e 2 omissões em conf=0,25 e IoU ≥ 0,50. Os cinco painéis mostram os resultados e a tabela registra as falhas.
+6. **Dificuldades e melhorias:** o dataset de origem tinha duplicações e uma caixa de altura zero; a preparação foi corrigida antes deste treino. A quantidade de cenas distintas e a reserva final são pequenas. Mais fotografias independentes e variadas, revisão de anotações e ajuste cuidadoso de resolução/épocas podem melhorar a cobertura e a localização.
 
-## Evidências e arquivos da entrega
+## Conclusão e arquivos da entrega
 
-Os arquivos que acompanham este relatório estão organizados na pasta da atividade:
+A execução corrigida usa conjuntos separados pelos critérios de duplicação aplicados. As métricas anteriores, calculadas com vazamento de dados, foram substituídas pelos resultados apresentados neste relatório. O conjunto é pequeno e as métricas não garantem desempenho em qualquer ambiente; ainda são desejáveis exemplos de fontes e condições diferentes.
 
-- **Dados e configuração:** imagens e anotações em `dataset/ready/`, com o arquivo `data.yaml`. A origem e a licença do dataset estão descritas na seção 2.
-- **Modelo treinado:** pesos salvos em `modelo/best.pt`.
-- **Código e comandos:** scripts `prepare_dataset.py` e `compare_unseen.py`, além de `comandos.txt`.
-- **Resultados do treinamento:** parâmetros e métricas por época em `evidencias/`; gráficos em `runs/detect/resultados/treino_final/`.
-- **Detecções:** cinco imagens com as caixas previstas e arquivos com os escores em `runs/detect/resultados/imagens_ineditas/`.
+Os arquivos estão organizados na pasta da atividade:
 
-As métricas e predições apresentadas correspondem aos artefatos salvos nessa execução.
+- **Dados:** `dataset/ready/`, com imagens, anotações e `data.yaml`.
+- **Modelo:** `modelo/best.pt`, obtido neste treinamento de 20 épocas.
+- **Preparação e execução:** `prepare_dataset.py`, scripts compartilhados na pasta `scripts/` da raiz e `comandos.txt`.
+- **Evidências:** `evidencias/preparacao_corrigida.json`, `metricas_corrigidas.json`, `resultados_treinamento.csv`, comparações CSV/JSON e os cinco painéis visuais.
+- **Treinamento e detecções:** `runs/detect/resultados/`.
+
+Os resultados foram gerados nas execuções registradas. As evidências incluem logs textuais, gráficos e imagens; não são capturas literais de tela do terminal.

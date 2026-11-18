@@ -1,97 +1,137 @@
-# Relatório técnico — Atividade prática II
-
-> **Correção após auditoria:** foram encontradas fotos idênticas em divisões diferentes (ver ../docs/CONFERENCIA.md). As métricas abaixo registram a execução original com vazamento de dados e não comprovam generalização. Na final, todas as cinco imagens reservadas têm cópias no treino/validação e não atendem ao requisito de imagens inéditas. É necessário refazer a divisão, o treino e a avaliação.
+# Relatório técnico — Atividade prática II: YOLO + Kaggle
 
 **Nome:** Kauan Reis Bueno  
 **Turma:** 8 Período  
 **Data:** 17/11/2026
 
-## Dataset e problema
+## Projeto e preparação dos dados
 
-Foi escolhido o **Ripe and Unripe Tomatoes Dataset**, publicado no Kaggle por Suman Kunwar. A descrição informa 177 imagens JPEG anotadas para detecção, duas classes (`0: unriped`, `1: riped`) e arquivos YOLO com `classe x_centro y_centro largura altura`. A finalidade é distinguir frutos em diferentes estágios de maturação, aplicação ligada à automação agrícola. Licença declarada: CC BY-SA 4.0. Fonte: https://www.kaggle.com/datasets/sumn2u/riped-and-unriped-tomato-dataset/versions/2.
+O projeto localiza tomates e distingue dois estágios de maturação: `0: nao_maduro` (original `unriped`) e `1: maduro` (original `riped`). A localização é representada por caixas delimitadoras.
 
-## Respostas
+Fonte: **Ripe and Unripe Tomatoes Dataset**, de Suman Kunwar, [Kaggle](https://www.kaggle.com/datasets/sumn2u/riped-and-unriped-tomato-dataset/versions/2). Licença declarada: **CC BY-SA 4.0**. O conjunto original contém 177 arquivos de imagem; a finalidade é apoiar aplicações de visão computacional na agricultura.
 
-### 1. Dataset escolhido
+A revisão identificou cópias idênticas e versões muito semelhantes de uma mesma fotografia. Antes da nova divisão, foram calculados SHA-256 e hash perceptual (pHash, 64 bits). Arquivos com mesmo SHA-256 ou distância de Hamming de pHash ≤ 8 foram agrupados. Foi mantida uma imagem por grupo, escolhendo o arquivo com mais caixas válidas e desempate pelo nome. A anotação usada é a do próprio arquivo selecionado; não foram combinadas caixas de imagens diferentes.
 
-Dataset público do Kaggle sobre tomates maduros e não maduros; foram pareadas 177 imagens JPEG com rótulos YOLO de duas classes. A licença indicada na página é CC BY-SA 4.0. Foi identificado um rótulo degenerado (altura zero); essa caixa foi removida apenas na cópia preparada, sem alterar o original.
+Foram encontrados 89 arquivos distintos por SHA-256. Após o agrupamento visual, restaram **78 imagens representativas**. A escolha de um subconjunto menor evita que cópias ou versões da mesma fotografia atravessem os grupos de treino e avaliação. Uma caixa de altura zero identificada na origem foi descartada durante a conferência das anotações. Os representantes selecionados contêm 459 caixas válidas no total.
 
-### 2. O que é bounding box e por que normalizar?
+A divisão usa ordem determinística e estratificação pela classe majoritária, preservando as duas classes em cada grupo. O mapa dos 177 arquivos para seus representantes e a divisão exata estão em `evidencias/preparacao_corrigida.json` e `evidencias/divisoes.csv`.
 
-Bounding box é um retângulo que delimita a posição e o tamanho de um objeto na imagem. No formato YOLO, registram-se centro X, centro Y, largura e altura em relação às dimensões da imagem, entre 0 e 1. A normalização torna as coordenadas independentes da resolução em pixels e facilita usar tamanhos de imagem diferentes.
+| Divisão | Imagens | Objetos anotados |
+|---|---:|---:|
+| train | 55 | 346 |
+| val | 15 | 73 |
+| test | 8 | 40 |
 
-### 3. Para que serve `data.yaml`?
+A conferência após a preparação não encontrou duplicações exatas nem pares com distância pHash ≤ 8 entre divisões. Esse critério não garante ausência de toda semelhança possível entre cenas. O teste em fotografias de outras fontes continua sendo uma melhoria recomendada.
 
-Ele informa ao treinamento onde estão as imagens de treino, validação e teste e qual nome corresponde a cada ID de classe. Se a ordem estiver errada, o modelo aprenderá ou reportará nomes trocados, mesmo que as caixas estejam geometricamente corretas.
+### Estrutura e configuração
 
-### 4. Treinamento e inferência
+```text
+dataset/yolo/
+├── images/train/
+├── images/val/
+├── images/test/
+├── labels/train/
+├── labels/val/
+├── labels/test/
+└── data.yaml
+```
 
-No treinamento, imagens anotadas são usadas para ajustar os pesos da rede, reduzindo erros de localização e classificação. Na inferência, os pesos já ajustados são aplicados a imagens de entrada para prever caixas, classes e escores, sem atualizar o modelo.
+```yaml
+path: dataset/yolo
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: nao_maduro
+  1: maduro
+```
 
-### 5. Boa precisão com objetos perdidos
+Exemplo de anotação correspondente a `riped_tomato_10.jpeg` (classe, centro X, centro Y, largura e altura normalizados):
 
-Sim. Precisão alta significa que poucas detecções emitidas são falsas; recall baixo significa que muitos objetos reais ficaram sem detecção. Por exemplo, um modelo pode emitir uma caixa apenas quando tem alta confiança e ainda omitir vários objetos.
+```text
+0 0.597938 0.451890 0.395127 0.435801
+0 0.131959 0.506717 0.256420 0.365511
+0 0.532334 0.848797 0.371884 0.283037
+```
 
-### 6. Por que poucos acertos não provam robustez?
+## Treinamento e avaliação
 
-Alguns exemplos não cobrem variações de iluminação, escala, fundo, ângulo, oclusão e aparência. O desempenho em imagens específicas não garante generalização; por isso são necessários dados representativos e avaliação em imagens separadas do treino.
+Modelo: **YOLO26n** com pesos pré-treinados de origem; os pesos antigos treinados com a divisão inadequada não foram reutilizados. Foram executadas **20 épocas**, `imgsz=416`, `batch=4`, `device=cpu`, `workers=0` e `seed=42`. Ambiente: Windows 11, Python 3.12.10, Ultralytics 8.4.214 e PyTorch 2.15.0+cpu, em AMD Ryzen 5 5500U.
 
-### 7. Efeito de `conf=0.25` versus `conf=0.70`
+Os pesos do melhor checkpoint estão em `modelo/best.pt`. A seleção do checkpoint usou a validação; a divisão de teste/reserva não participou da atualização dos pesos nem da escolha do checkpoint.
 
-O limiar 0,70 elimina previsões com escore inferior a ele, então reduz o número de caixas. Nos 19 testes, o total passou de 100 caixas (conf=0,25) para 82 (conf=0,70). Comparando as caixas com os rótulos de referência em IoU ≥ 0,50, os acertos caíram de 92 para 79, falsos positivos de 8 para 3 e falsos negativos subiram de 9 para 22. Portanto, 13 detecções corretas desapareceram e 5 falsos positivos foram removidos. Os resultados das cinco imagens da tabela também mostram essa troca.
+**Validação:** Precision **0,792**, Recall **0,696**, mAP50 **0,776** e mAP50-95 **0,444**.
 
-## Configuração e resultados experimentais
+**Teste separado:** Precision **0,831**, Recall **0,855**, mAP50 **0,839** e mAP50-95 **0,510**. O teste contém 8 imagens e 40 objetos anotados.
 
-- Quantidade pareada total: 177 imagens; 868 caixas válidas após remoção de uma caixa de altura zero.
-- Treino / validação / teste: 123 / 35 / 19 imagens (seed=42; 70/20/10 aproximado).
-- Modelo e épocas: YOLO26n pré-treinado, 20 épocas, `imgsz=416`, `batch=4`, CPU (`workers=0`)
-- Métricas de validação do treino: Precision 0,923; Recall 0,922; mAP50 0,948; mAP50-95 0,637.
-- Métricas no teste separado: Precision 0,916; Recall 0,919; mAP50 0,944; mAP50-95 0,639 (19 imagens, 101 objetos anotados).
-- `best.pt`: `modelo/best.pt`.
+Precision mede a proporção de previsões corretas entre as detecções emitidas; Recall mede a fração dos objetos reais que o modelo encontrou. mAP50 é a média, entre classes, da área sob a curva de precisão e revocação com correspondência de caixas em IoU ≥ 0,50. mAP50-95 agrega vários limiares de IoU e exige localização mais rigorosa. Os valores do Ultralytics não são a mesma coisa que a contagem fixa de TP/FP/FN em `conf=0.25`.
 
-| Imagem de teste | Objetos anotados | TP / FP / FN em 0,25 | TP / FP / FN em 0,70 |
-|---|---:|---:|---:|
-| riped_tomato_15 | 3 | 3 / 0 / 0 | 3 / 0 / 0 |
-| riped_tomato_17 | 2 | 2 / 0 / 0 | 2 / 0 / 0 |
-| unriped_tomato_2 | 6 | 5 / 3 / 1 | 2 / 1 / 4 |
-| unriped_tomato_39 | 8 | 8 / 0 / 0 | 8 / 0 / 0 |
-| unriped_tomato_61 | 11 | 8 / 0 / 3 | 6 / 0 / 5 |
+![Curvas do novo treinamento](runs/detect/resultados/treinamento_corrigido/results.png)
 
-TP/FP/FN foram calculados com correspondência de classe e IoU ≥ 0,50. As predições anotadas estão em `runs/detect/resultados/conf025/` e `conf070/`.
+## Resultados nas imagens reservadas
 
-### Exemplos visuais (original + predição em 0,25 e 0,70)
+A comparação usa classe correta e IoU ≥ 0,50, com pareamento de uma previsão por objeto. Erros de classe aparecem como falso positivo e falso negativo; a coluna de erro de classe indica esse subconjunto, sem somá-lo novamente aos totais.
 
-#### riped_tomato_15
+| Configuração | Caixas previstas | TP | FP | FN | Erros de classe |
+|---|---:|---:|---:|---:|---:|
+| conf=0,25 | 36 | 31 | 5 | 9 | 2 |
+| conf=0,70 | 22 | 19 | 3 | 21 | 2 |
 
-![Predição com conf 0,25](runs/detect/resultados/conf025/riped_tomato_15.jpg)
-![Predição com conf 0,70](runs/detect/resultados/conf070/riped_tomato_15.jpg)
+Ao elevar o limiar de 0,25 para 0,70, as caixas previstas passaram de 36 para 22. Os verdadeiros positivos passaram de 31 para 19 e os falsos positivos de 5 para 3; os falsos negativos passaram de 9 para 21. Isso mostra a perda de detecções corretas e a redução de parte das detecções incorretas.
 
-#### riped_tomato_17
+### Cinco exemplos com referência e previsões
 
-![Predição com conf 0,25](runs/detect/resultados/conf025/riped_tomato_17.jpg)
-![Predição com conf 0,70](runs/detect/resultados/conf070/riped_tomato_17.jpg)
+| Imagem | TP / FP / FN em 0,25 | TP / FP / FN em 0,70 | Erros de classe em 0,25 / 0,70 |
+|---|---|---|---|
+| riped_tomato_10.jpeg | 3 / 0 / 0 | 3 / 0 / 0 | 0 / 0 |
+| riped_tomato_27.jpeg | 3 / 0 / 0 | 2 / 0 / 1 | 0 / 0 |
+| riped_tomato_22.jpeg | 10 / 0 / 3 | 3 / 0 / 10 | 0 / 0 |
+| unriped_tomato_20.jpeg | 6 / 1 / 3 | 4 / 0 / 5 | 0 / 0 |
+| riped_tomato_2.jpeg | 6 / 2 / 2 | 6 / 2 / 2 | 2 / 2 |
 
-#### unriped_tomato_2
+Cada painel apresenta a imagem original, as caixas da anotação de referência e as previsões do modelo.
 
-![Predição com conf 0,25](runs/detect/resultados/conf025/unriped_tomato_2.jpg)
-![Predição com conf 0,70](runs/detect/resultados/conf070/unriped_tomato_2.jpg)
+### riped_tomato_10.jpeg
 
-#### unriped_tomato_39
+![Original, referência e predições de riped_tomato_10.jpeg](evidencias/comparacoes_visuais/riped_tomato_10.jpg)
 
-![Predição com conf 0,25](runs/detect/resultados/conf025/unriped_tomato_39.jpg)
-![Predição com conf 0,70](runs/detect/resultados/conf070/unriped_tomato_39.jpg)
+### riped_tomato_27.jpeg
 
-#### unriped_tomato_61
+![Original, referência e predições de riped_tomato_27.jpeg](evidencias/comparacoes_visuais/riped_tomato_27.jpg)
 
-![Predição com conf 0,25](runs/detect/resultados/conf025/unriped_tomato_61.jpg)
-![Predição com conf 0,70](runs/detect/resultados/conf070/unriped_tomato_61.jpg)
+### riped_tomato_22.jpeg
 
-## Organização e evidências
+![Original, referência e predições de riped_tomato_22.jpeg](evidencias/comparacoes_visuais/riped_tomato_22.jpg)
 
-`dataset/yolo/` contém as divisões e `data.yaml`; `runs/detect/resultados/` contém os artefatos do Ultralytics; `evidencias/` contém parâmetros e métricas do treino. As pastas `conf025/` e `conf070/` têm as cinco imagens selecionadas e as demais predições anotadas. A autoria, a origem e a licença do dataset estão registradas na seção Dataset e problema.
+### unriped_tomato_20.jpeg
 
-![Curvas do treinamento na validação](runs/detect/resultados/treinamento1-2/results.png)
+![Original, referência e predições de unriped_tomato_20.jpeg](evidencias/comparacoes_visuais/unriped_tomato_20.jpg)
 
-## Conclusão
+### riped_tomato_2.jpeg
 
-O modelo atingiu métricas altas neste teste de 19 imagens, mas o tamanho e a origem única do dataset limitam a generalização. O limiar 0,70 reduziu falsos positivos, mas perdeu mais objetos corretos. A caixa degenerada encontrada mostra a necessidade de revisar anotações; mais imagens diversas e uma revisão das caixas ajudariam a avaliar e melhorar a robustez.
+![Original, referência e predições de riped_tomato_2.jpeg](evidencias/comparacoes_visuais/riped_tomato_2.jpg)
+
+## Respostas às sete questões
+
+1. **Dataset escolhido:** conjunto público de tomates de Suman Kunwar no Kaggle, com 177 arquivos originais e anotações de detecção YOLO. Foram utilizadas 78 imagens representativas após remover cópias exatas e versões próximas. Classes: não maduro e maduro. A finalidade original é apoiar reconhecimento de maturação em aplicações agrícolas; licença CC BY-SA 4.0 e fonte indicadas na seção inicial.
+2. **Bounding box e normalização:** uma caixa delimita a região ocupada pelo objeto. No YOLO, centro e dimensões são divididos pela largura/altura da imagem, gerando coordenadas de 0 a 1 independentes da resolução em pixels.
+3. **Função de data.yaml:** define os caminhos de treino, validação e teste e o nome de cada ID de classe. Uma ordem incorreta associa caixas a nomes errados e pode produzir classes trocadas.
+4. **Treinamento e inferência:** treinamento ajusta os pesos da rede usando exemplos anotados. Inferência aplica os pesos salvos a novas entradas, sem ajustá-los. O treino parte dos pesos pré-treinados e gera um checkpoint específico para as duas classes.
+5. **Boa precisão com objetos omitidos:** sim. Precision alta indica poucos falsos positivos, mas Recall baixo indica muitos objetos reais sem detecção. Um limiar alto pode produzir exatamente essa combinação.
+6. **Generalização:** acertar poucos exemplos não garante funcionamento em iluminação, fundo, escala e ângulo diferentes. Separar cenas semelhantes e usar dados independentes é necessário para avaliar essa capacidade. Mesmo corrigido, o teste de oito imagens é pequeno.
+7. **Experimento de confiança:** Ao elevar o limiar de 0,25 para 0,70, as caixas previstas passaram de 36 para 22. Os verdadeiros positivos passaram de 31 para 19 e os falsos positivos de 5 para 3; os falsos negativos passaram de 9 para 21. Isso mostra a perda de detecções corretas e a redução de parte das detecções incorretas. As tabelas, painéis e arquivos CSV registram as evidências.
+
+## Conclusão e arquivos da entrega
+
+A execução corrigida usa conjuntos separados pelos critérios de duplicação aplicados. As métricas anteriores, calculadas com vazamento de dados, foram substituídas pelos resultados apresentados neste relatório. O conjunto é pequeno e as métricas não garantem desempenho em qualquer ambiente; ainda são desejáveis exemplos de fontes e condições diferentes.
+
+Os arquivos estão organizados na pasta da atividade:
+
+- **Dados:** `dataset/yolo/`, com imagens, anotações e `data.yaml`.
+- **Modelo:** `modelo/best.pt`, obtido neste treinamento de 20 épocas.
+- **Preparação e execução:** `prepare_dataset.py`, scripts compartilhados na pasta `scripts/` da raiz e `comandos.txt`.
+- **Evidências:** `evidencias/preparacao_corrigida.json`, `metricas_corrigidas.json`, `resultados_treinamento.csv`, comparações CSV/JSON e os cinco painéis visuais.
+- **Treinamento e detecções:** `runs/detect/resultados/`.
+
+Os resultados foram gerados nas execuções registradas. As evidências incluem logs textuais, gráficos e imagens; não são capturas literais de tela do terminal.

@@ -14,31 +14,40 @@ Três atividades práticas que documentam a configuração do YOLO no Windows, o
 
 Os PDFs estão reunidos em **[relatorios/](relatorios/)**. A versão em Markdown permite consultar respostas e imagens diretamente pelo navegador, sem instalar o ambiente Python.
 
-> **Limitação identificada na conferência:** há imagens idênticas em divisões diferentes nas atividades 2 e final. As cinco imagens reservadas da final têm cópias em treino ou validação. As métricas apresentadas registram a execução original com vazamento de dados e não comprovam avaliação independente. A divisão, o treinamento e a avaliação precisam ser refeitos para atender a esse requisito. [Consultar a auditoria](docs/CONFERENCIA.md).
+> **Separação dos dados verificada:** as duplicações identificadas na origem foram tratadas antes dos novos treinamentos. As atividades 2 e final usam 78 imagens representativas, com conjuntos separados por SHA-256 e pHash. Os resultados abaixo pertencem às execuções corrigidas. [Consultar a verificação](docs/CONFERENCIA.md).
 
 ## Atividades desenvolvidas
 
 | Etapa | Objetivo | Materiais disponíveis |
 |---|---|---|
 | **01** | Preparar o ambiente e executar um detector pré-treinado | Detecções de cachorro, carro e pessoa; comparação de confiança; treino COCO8 de 3 épocas |
-| **02** | Adaptar o detector às classes de um dataset anotado | Partições de treino, validação e teste; treino de 20 épocas; comparação entre `conf=0.25` e `conf=0.70` |
+| **02** | Adaptar o detector às classes de um dataset anotado | Partições de treino, validação e teste; novo treino de 20 épocas; comparação entre `conf=0.25` e `conf=0.70` |
 | **03** | Desenvolver e avaliar um detector específico | Treino de 20 épocas; pesos salvos; métricas e análise de cinco imagens reservadas |
 
 ### Exemplos das execuções
 
 | Atividade 1 — objetos cotidianos | Atividade 2 — tomates | Projeto final — tomates |
 |---|---|---|
-| ![Cachorro detectado](Atividade_Pratica_YOLO_Windows/runs/detect/resultados/proprias_025/cachorro.jpg) | ![Detecção de tomates na atividade 2](Atividade_Pratica_II_YOLO_Kaggle/runs/detect/resultados/conf025/riped_tomato_17.jpg) | ![Detecção de tomates no projeto final](Atividade_Pratica_Final_YOLO/runs/detect/resultados/imagens_ineditas/riped_tomato_47.jpg) |
+| ![Cachorro detectado](Atividade_Pratica_YOLO_Windows/runs/detect/resultados/proprias_025/cachorro.jpg) | ![Detecção de tomates na atividade 2](Atividade_Pratica_II_YOLO_Kaggle/runs/detect/resultados/conf025/riped_tomato_10.jpg) | ![Detecção de tomates no projeto final](Atividade_Pratica_Final_YOLO/runs/detect/resultados/imagens_ineditas/riped_tomato_17.jpg) |
 
 ## Resultados registrados
 
 | Atividade | Modelo | Épocas | Conjunto avaliado | Precision | Recall | mAP50 | mAP50–95 |
 |---|---|---:|---|---:|---:|---:|---:|
 | 01 | YOLO26n | 3 | Validação COCO8 · 4 imagens | 0,705 | 0,633 | 0,796 | 0,576 |
-| 02 | YOLO26n | 20 | Partição de teste · 19 imagens | 0,916 | 0,919 | 0,944 | 0,639 |
-| 03 | YOLO26n | 20 | Validação · 35 imagens | 0,874 | 0,800 | 0,859 | 0,552 |
+| 02 | YOLO26n | 20 | Partição de teste · 8 imagens | 0,831 | 0,855 | 0,839 | 0,510 |
+| 03 | YOLO26n | 20 | Validação · 15 imagens | 0,786 | 0,677 | 0,731 | 0,418 |
 
-Essas métricas provêm de conjuntos diferentes e devem ser interpretadas com as limitações da auditoria. Nas cinco imagens reservadas da final, foram anotados 20 objetos: 19 correspondências corretas, 1 falso positivo e 1 omissão, considerando classe correta e IoU ≥ 0,50. A presença de duplicações impede tratar essa reserva como demonstração em imagens inéditas.
+As métricas provêm de conjuntos diferentes. A atividade 2 usa o teste separado e a final usa a validação. Nas cinco imagens inéditas da final, foram anotados 17 objetos: 15 correspondências corretas, 4 falsos positivos e 2 omissões em conf=0,25, considerando classe correta e IoU ≥ 0,50. A conferência não encontrou cópias exatas nem pares semelhantes pelo critério aplicado entre essas imagens e o treino/validação. A amostra continua pequena, e não garante desempenho em qualquer cenário.
+
+### Dados utilizados após a revisão
+
+| Atividade | Treino | Validação | Teste ou inéditas |
+|---|---:|---:|---:|
+| 02 | 55 | 15 | 8 de teste |
+| 03 | 58 | 15 | 5 inéditas |
+
+Dos 177 arquivos da origem, 89 têm conteúdo distinto por SHA-256. O agrupamento de versões próximas por pHash resultou em 78 representantes. Na final, treino e validação somam 73 imagens anotadas, atendendo ao mínimo de 60 do enunciado.
 
 ## Organização do repositório
 
@@ -91,9 +100,9 @@ python executar.py 2 comparar
 python executar.py final comparar
 ```
 
-`avaliar` executa a avaliação dos checkpoints nos conjuntos incluídos. `comparar` recalcula as contagens a partir das predições e anotações salvas. Esses comandos reproduzem a execução documentada; a reprodução não corrige o vazamento de dados identificado.
+`avaliar` executa a avaliação dos checkpoints nos conjuntos incluídos. `comparar` recalcula as contagens a partir das predições e anotações salvas. Esses comandos reproduzem a execução corrigida sobre os dados já preparados, com controle de duplicações aplicado antes dos novos treinamentos.
 
-Para repetir o treinamento, use `treinar` no lugar de `inferir`. Cada execução começa com os pesos pré-treinados incluídos e salva um novo experimento. No computador utilizado, o treinamento da final levou aproximadamente 25 minutos.
+Para repetir o treinamento, use `treinar` no lugar de `inferir`. Cada execução começa com os pesos pré-treinados incluídos e salva um novo experimento. No computador utilizado, o tempo de treinamento depende da quantidade de imagens e dos recursos disponíveis.
 
 ## Documentação e evidências
 

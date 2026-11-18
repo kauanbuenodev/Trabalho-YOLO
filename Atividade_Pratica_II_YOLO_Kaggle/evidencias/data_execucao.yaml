@@ -1,0 +1,7 @@
+path: C:/Users/Kauan/OneDrive/Área de Trabalho/Trabalho YOLO/Repositorio_YOLO/Atividade_Pratica_II_YOLO_Kaggle/dataset/yolo
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: nao_maduro
+  1: maduro

@@ -11,6 +11,7 @@ access_token
 .kaggle/
 .pdf_tools/
 novas_execucoes/
+**/runs/**/weights/
 *.zip
 Thumbs.db
 Desktop.ini

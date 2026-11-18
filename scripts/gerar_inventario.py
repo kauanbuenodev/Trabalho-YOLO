@@ -7,7 +7,12 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def main():
-    paths = sorted(p for p in ROOT.rglob("*") if p.is_file() and not any(x in p.relative_to(ROOT).parts for x in [".git", ".venv", "__pycache__", "novas_execucoes"]) and p.name not in {"INVENTARIO.csv", "TAMANHO.md"})
+    paths = sorted(p for p in ROOT.rglob("*") if p.is_file() and not any(x in p.relative_to(ROOT).parts for x in [".git", ".venv", "__pycache__", "novas_execucoes"]) and p.suffix not in {".cache", ".pyc", ".log", ".zip"} and not ("runs" in p.relative_to(ROOT).parts and "weights" in p.relative_to(ROOT).parts) and p.name not in {"INVENTARIO.csv", "TAMANHO.md"})
+    # Manter os hashes iguais aos arquivos publicados com eol=lf no Git.
+    for p in paths:
+        if p.suffix in {'.py','.md','.html','.csv','.yaml','.yml','.txt','.json'} or p.name in {'.gitignore','.gitattributes'}:
+            content=p.read_bytes().decode('utf-8-sig').replace('\r\n','\n')
+            p.write_bytes(content.encode('utf-8'))
     total = sum(p.stat().st_size for p in paths)
     with (ROOT / "docs/INVENTARIO.csv").open("w", encoding="utf-8", newline="") as file:
         writer = csv.writer(file)

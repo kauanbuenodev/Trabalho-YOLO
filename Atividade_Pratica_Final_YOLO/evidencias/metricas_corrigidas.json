@@ -1,0 +1,13 @@
+{
+  "val": {
+    "metrics/precision(B)": 0.7862624417789496,
+    "metrics/recall(B)": 0.6770598313227896,
+    "metrics/mAP50(B)": 0.7313650204232593,
+    "metrics/mAP50-95(B)": 0.41799983764537324,
+    "fitness": 0.41799983764537324
+  },
+  "train_dir": "treino_final_corrigido",
+  "epochs": 20,
+  "imgsz": 640,
+  "best_sha256": "46039b4490d4cbdb24e068c98a11dc66a3fcace3d69e31fa80d47e0b6fe72b83"
+}

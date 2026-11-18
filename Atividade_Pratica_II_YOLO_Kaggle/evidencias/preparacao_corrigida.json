@@ -1,0 +1,1553 @@
+{
+  "activity": "2",
+  "original_images": 177,
+  "sha256_unique": 89,
+  "visual_unique": 78,
+  "phash_max_distance": 8,
+  "seed": 42,
+  "invalid_boxes_in_original": 1,
+  "splits": {
+    "train": 55,
+    "val": 15,
+    "test": 8
+  },
+  "boxes": {
+    "train": 346,
+    "val": 73,
+    "test": 40
+  },
+  "manifest": [
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_1.jpeg",
+      "sha256": "ef493b4baef6d1e63c5c0e93f5af7eed6aab9e086a0bc6873c3536f2cee5e786",
+      "caixas": 2
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_31.jpeg",
+      "sha256": "82cdc605d08089be0b1ca109ca4400602e713ebb8c8dacc8e543cfb8e486a4ce",
+      "caixas": 6
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_16.jpeg",
+      "sha256": "03d04afd6d8b895fe6c28cbed5f41e6c7171760f62bf97d94dc5e4d42e96f2b1",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_13.jpeg",
+      "sha256": "fd39a9b100c8a4dd46ea12f5898da348f338eb15d8d4bb5da5301c8641c3f280",
+      "caixas": 11
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_35.jpeg",
+      "sha256": "5bbba61a41c79bd14dd7aae91c50d8bd579587532a91021aa0cfb7655f03093a",
+      "caixas": 1
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_5.jpeg",
+      "sha256": "d8da7020e798f1d6f94ed1460e9943a9d49ede8d34cb2c2e74267a436b4b013b",
+      "caixas": 5
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_51.jpeg",
+      "sha256": "35f4ed0ea777cc5200c4c808d5d18cb60a7ae1ea5a3060a352948b833f35da3e",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_84.jpeg",
+      "sha256": "c3e8060f100fa4a2540fae2d1cc94a22b867ade0a429f6b7c732e4c4fe4e6df1",
+      "caixas": 10
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_37.jpeg",
+      "sha256": "eb71fb21ae5d66219bef1b19763180a023b4297d96ea7fa9981ef52938ce83ca",
+      "caixas": 5
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_55.jpeg",
+      "sha256": "5195a19b8383da00429c20163464f6440c0ea6c98c0cf1897009c45bec2ac50b",
+      "caixas": 1
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_64.jpeg",
+      "sha256": "2f640cedc8e3ba37d669e182c211d349c16b99918bbc0194e37328d29dabca1f",
+      "caixas": 5
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_61.jpeg",
+      "sha256": "98a7f1629c7bfaaf637a59876ba79bc5e517a0dd93df3500581903b61c55a05a",
+      "caixas": 11
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_62.jpeg",
+      "sha256": "b22958cf4c94bc67c95e40e0cc8add375c892ed6293ed7a1f622113259031c52",
+      "caixas": 6
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_14.jpeg",
+      "sha256": "259d733025c95e1141c32100f3d5f745f5a4ca451792f37880ad8a2f4d920242",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_15.jpeg",
+      "sha256": "f3f08bc7ab3c7b6fbfb092e8400c6efc5b816828ec4d03f7f390fcfd70976710",
+      "caixas": 6
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_30.jpeg",
+      "sha256": "5e6fa49037d34ff21dd24bfaedaeceba335239c6199d77da3581eb1ededcbb59",
+      "caixas": 6
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_54.jpeg",
+      "sha256": "de67b842e3bdfdaae0c93de48daf028b18290ff95130d215b939c64d72d38c26",
+      "caixas": 22
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_21.jpeg",
+      "sha256": "dabefc445761b9d5544619a5efd9799d32d8595d68b3764f1cf3ef0343507370",
+      "caixas": 5
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_74.jpeg",
+      "sha256": "a5904f5a24a6ff1aa9b23c2d9b14e0f19154033d1fce0847644dfc87ac393078",
+      "caixas": 1
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_10.jpeg",
+      "sha256": "05ef8c06514dbc3958ac50dbf913c1879a0f4bc919f06d65b889b9a44c7d6b27",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_43.jpeg",
+      "sha256": "504bfaaba044fcbf2998edff68f1c1962a2eb3ca66749aa2b711a18b81f3e7e9",
+      "caixas": 5
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_1.jpeg",
+      "sha256": "0ded5fc6db2295081185e015619c20650cbe9237404823b6fdfefe3f5b80a654",
+      "caixas": 15
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_68.jpeg",
+      "sha256": "8bc9f0936b7a6b28225717713bf3cc8a5dd9a34f581dc5ebcfc2ff1ca6de8989",
+      "caixas": 2
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_17.jpeg",
+      "sha256": "a1adbcf634a50bd84006996de86ed7c2d51e66044a7cfb9ef56f68b787828e83",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "unriped_tomato_27.jpeg",
+      "sha256": "ea08de8e6e9e9957f6ab7dbeb849b51783404e83e30ff2e4b767e69b4423b00a",
+      "caixas": 8
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_19.jpeg",
+      "sha256": "6f87d973f999903d3172222b665f97bc3119de580b728191bced03041e244d62",
+      "caixas": 4
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_11.jpeg",
+      "sha256": "bc2ced569e77cad8f56709360debd255ef3eb6c02a5ae2d4f4ca9ea35df77d75",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_31.jpeg",
+      "sha256": "35600c6dda2d0f4916dba76eaf22d6105aa4b69283b2e42580fd85683ed3fd8d",
+      "caixas": 9
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_82.jpeg",
+      "sha256": "6d6fe3edb7dc38df0f2db88a400eb29b4f25ef06b9c403e50c6ee30ac2eb6ae6",
+      "caixas": 6
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_21.jpeg",
+      "sha256": "5cdcb7fff998fb44a76e5ddef3e9d9005588ae151f012cc3537ed04a97b6a115",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_20.jpeg",
+      "sha256": "233aa271df5aaf6c3340fa4f22c7aad576e22a67541bec259b5008707f3d5875",
+      "caixas": 2
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_87.jpeg",
+      "sha256": "8d9bf681dbdf90392a6ec5c18cff3f7c684afe277e59e833bcf6a72747b76821",
+      "caixas": 21
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_73.jpeg",
+      "sha256": "7cff08d95bcf78e814c22a3f750df05cf258617efdfe39f367271434f9671015",
+      "caixas": 8
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_74.jpeg",
+      "sha256": "f2c299b14c507b7a43468fd1000dc2026c375ff5e558484fcb497baa05a2d0f3",
+      "caixas": 14
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_52.jpeg",
+      "sha256": "6782b4e5db499fe1ac2932426f75740c5879e4b4992fb860f5f70dda08aaadff",
+      "caixas": 6
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_9.jpeg",
+      "sha256": "10d359e178d081d4ac41efed05ef3785ac88de611615e97fdbf237c9b076e48b",
+      "caixas": 5
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_29.jpeg",
+      "sha256": "af6e302b18e28f12929b7c7cb3110cafa49fe1380bd824f7f7813bdc032eb107",
+      "caixas": 1
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_16.jpeg",
+      "sha256": "01eea95cb0568749b2bd41e99639e9bb46829f0b69ecc7ace4eccb03741f5a7d",
+      "caixas": 4
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_81.jpeg",
+      "sha256": "8d060047503c3acaa5a5ebcb6ffa11dcaca0446cef7683db2f1b2bdb9e226f59",
+      "caixas": 10
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_70.jpeg",
+      "sha256": "c6be04925edc93b148e7c75aad31633abcbaacefb10766e87d34dc174d4adc5e",
+      "caixas": 1
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_23.jpeg",
+      "sha256": "8fd1c93384ac9fb1d56dd0d471483ef9e51f4c338ee95ae6330b9040dd4f1c18",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_68.jpeg",
+      "sha256": "c0cccfd84ebc811ba932d76c98315fd0f868adda306250d6ab55b5e3c97332d4",
+      "caixas": 20
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_64.jpeg",
+      "sha256": "8edd663bd449ece1d5ccf48e63a4be7fc22d02da98b2c092dedab11e10f22717",
+      "caixas": 21
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_80.jpeg",
+      "sha256": "4840df1373053a01b30304e283565a3473c6946005f87d2babee267a11165184",
+      "caixas": 1
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_24.jpeg",
+      "sha256": "2c90ac757e5df5fa7195143965acd626ea261a4db417a693901062962aad3685",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_32.jpeg",
+      "sha256": "d187a42fd282130ba922b9e5456ac4b2651d019de7789038273584040514078f",
+      "caixas": 11
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_33.jpeg",
+      "sha256": "462b100237ee14225922f8277241cc6618f92e00f3e31d662a8da64c41225c81",
+      "caixas": 1
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_97.jpeg",
+      "sha256": "a1f0d23977550aa88b247e23aefd747a2bc4e47027560bf76caeb9eec82841a9",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_50.jpeg",
+      "sha256": "6ec1b8f2569f236632907dd3206b8dcef025f8d7a03504ef18c4b31612d6e589",
+      "caixas": 17
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_13.jpeg",
+      "sha256": "8b296b6c36384210ecb5341015e432c32d054ab7fbe285dfdf8567e1b1d29b96",
+      "caixas": 5
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_25.jpeg",
+      "sha256": "1fc48e368b56a70c1cc881790cf098a5f3af2a9270f3834e5c2c88a128116c85",
+      "caixas": 1
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_15.jpeg",
+      "sha256": "5406accacd7eb146d54b3a7dadd945011952fa070e4517bc70e13b6b76b2c537",
+      "caixas": 3
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_30.jpeg",
+      "sha256": "e12da718a2d3c790208519efc311c952b51100ebef62c7908ffd100432f84312",
+      "caixas": 5
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_28.jpeg",
+      "sha256": "3ff91692ae205adb6d14e8c7379e175067295e91221420b75be928eec90c3a64",
+      "caixas": 5
+    },
+    {
+      "divisao": "train",
+      "imagem": "riped_tomato_42.jpeg",
+      "sha256": "e10e9ceee629df054112a589e0a923aebe30ab6e9312876908eb995581dfea87",
+      "caixas": 2
+    },
+    {
+      "divisao": "val",
+      "imagem": "unriped_tomato_65.jpeg",
+      "sha256": "2b9052d3126f71b57191cf632b38a292da591fb392047ce1dcdabd4d860a1d82",
+      "caixas": 6
+    },
+    {
+      "divisao": "val",
+      "imagem": "unriped_tomato_6.jpeg",
+      "sha256": "30f8761c3b84f4d642e461f98deacc4823bb1e2d870133e7595c8ea50f8ec388",
+      "caixas": 6
+    },
+    {
+      "divisao": "val",
+      "imagem": "unriped_tomato_34.jpeg",
+      "sha256": "e5a3df3688155f46e01b6710f55472d5b32d7e011ca94f583abd46ab79d06c1b",
+      "caixas": 2
+    },
+    {
+      "divisao": "val",
+      "imagem": "riped_tomato_59.jpeg",
+      "sha256": "45aabdb50ea262dabc5dcfd95a1a6bb83527983a5f63e6cc87e702bceaadb437",
+      "caixas": 2
+    },
+    {
+      "divisao": "val",
+      "imagem": "unriped_tomato_36.jpeg",
+      "sha256": "2800698a746009c0cbde315140dd15c001ffff18395b8a9a78b2b6ab98945e5e",
+      "caixas": 1
+    },
+    {
+      "divisao": "val",
+      "imagem": "unriped_tomato_12.jpeg",
+      "sha256": "4c8d833bb10f86516454bbc3611d2e1479ecbe71e701d661287bc017802c3fdc",
+      "caixas": 6
+    },
+    {
+      "divisao": "val",
+      "imagem": "unriped_tomato_2.jpeg",
+      "sha256": "5719cdddd3398853f79c6fafd82e855669e7c9d8e7f3f664a903b5668d871b46",
+      "caixas": 6
+    },
+    {
+      "divisao": "val",
+      "imagem": "riped_tomato_12.jpeg",
+      "sha256": "59a74742d0970c7f7b0f55881f068086e8e741a372491928f5f3882f9af00554",
+      "caixas": 3
+    },
+    {
+      "divisao": "val",
+      "imagem": "riped_tomato_46.jpeg",
+      "sha256": "4ef82a25cc1f12039c756fc45c023260afeaf4e7bdada33f4296a10fbf01fb6b",
+      "caixas": 7
+    },
+    {
+      "divisao": "val",
+      "imagem": "riped_tomato_3.jpeg",
+      "sha256": "429d76e3235f6530c04a17655dceaac1e794cd84369b48c4a442f9dbc38bdece",
+      "caixas": 4
+    },
+    {
+      "divisao": "val",
+      "imagem": "riped_tomato_78.jpeg",
+      "sha256": "2e1cf68cf491aa6857699a5fe832e0037565b7d57aa075fc7c79b6002c1c1ed1",
+      "caixas": 6
+    },
+    {
+      "divisao": "val",
+      "imagem": "riped_tomato_40.jpeg",
+      "sha256": "1b934d8a922b7dd962fb2696796cb7ad95ffc6f09a046a749ad23a96ab155f29",
+      "caixas": 1
+    },
+    {
+      "divisao": "val",
+      "imagem": "riped_tomato_83.jpeg",
+      "sha256": "5e90902f8baa7075b2acd51980b3cbb2ee6a250aba183ebf2d150311c0b79f8d",
+      "caixas": 17
+    },
+    {
+      "divisao": "val",
+      "imagem": "riped_tomato_45.jpeg",
+      "sha256": "d0300e4a08a2e05c8da48cad1a5e8853a36db2562ddced50cb8f710510f241f9",
+      "caixas": 4
+    },
+    {
+      "divisao": "val",
+      "imagem": "riped_tomato_17.jpeg",
+      "sha256": "fdeccd03815367d55c3b28f1ef690f33b04864c3b90d68bccec87d16df9a8406",
+      "caixas": 2
+    },
+    {
+      "divisao": "test",
+      "imagem": "unriped_tomato_20.jpeg",
+      "sha256": "6652fe04b1ecb3c248b93c3897674893df1e7662f83ff3280d7f49d1309cd173",
+      "caixas": 9
+    },
+    {
+      "divisao": "test",
+      "imagem": "unriped_tomato_25.jpeg",
+      "sha256": "d6c354ac4767e781a15dc2e60df1867d73f0fb87e46315abca7628b2977cd477",
+      "caixas": 1
+    },
+    {
+      "divisao": "test",
+      "imagem": "riped_tomato_10.jpeg",
+      "sha256": "4ae27d0fd265efbae31780feded0e5f231d0701db7eac1010d50210b7f474947",
+      "caixas": 3
+    },
+    {
+      "divisao": "test",
+      "imagem": "unriped_tomato_11.jpeg",
+      "sha256": "55855ea54ed2020e42ae441c36f7bb325f35804c43f5981a36ae555cce150b03",
+      "caixas": 1
+    },
+    {
+      "divisao": "test",
+      "imagem": "riped_tomato_2.jpeg",
+      "sha256": "fc3902fe5a18bb0a62c012f99c824ed854f31294bec1eff9f4b9a40e606dc8e2",
+      "caixas": 8
+    },
+    {
+      "divisao": "test",
+      "imagem": "riped_tomato_4.jpeg",
+      "sha256": "f6391fe84bebb3930bde873080321a1314f7d9b107ef2c23588419c704731e57",
+      "caixas": 2
+    },
+    {
+      "divisao": "test",
+      "imagem": "riped_tomato_27.jpeg",
+      "sha256": "e9a2b846f3a3603802bd604bd0fd9c16da1c0aa3f5399da6c3ab53c552d9e8cd",
+      "caixas": 3
+    },
+    {
+      "divisao": "test",
+      "imagem": "riped_tomato_22.jpeg",
+      "sha256": "f62cc0f46b3af36e8a2698c75050d35abcc364d4763cd3477a9e2557898913bb",
+      "caixas": 13
+    }
+  ],
+  "groups": [
+    {
+      "original": "riped_tomato_1.jpeg",
+      "representante": "riped_tomato_1.jpeg",
+      "sha256": "0ded5fc6db2295081185e015619c20650cbe9237404823b6fdfefe3f5b80a654",
+      "phash": "1000100010000110001100001010101110101111110100011011010100110111"
+    },
+    {
+      "original": "riped_tomato_54.jpeg",
+      "representante": "riped_tomato_1.jpeg",
+      "sha256": "e27be70411cf65bdb0760c37e6c06c13d612ea4a16dafdd3beb1836ff5d5f943",
+      "phash": "1000100010000110001100001010101110101111110110010011010100110111"
+    },
+    {
+      "original": "riped_tomato_10.jpeg",
+      "representante": "riped_tomato_10.jpeg",
+      "sha256": "4ae27d0fd265efbae31780feded0e5f231d0701db7eac1010d50210b7f474947",
+      "phash": "1001101110110010001001000110011110011101100110010001011000001111"
+    },
+    {
+      "original": "unriped_tomato_80.jpeg",
+      "representante": "riped_tomato_10.jpeg",
+      "sha256": "4ae27d0fd265efbae31780feded0e5f231d0701db7eac1010d50210b7f474947",
+      "phash": "1001101110110010001001000110011110011101100110010001011000001111"
+    },
+    {
+      "original": "riped_tomato_11.jpeg",
+      "representante": "riped_tomato_11.jpeg",
+      "sha256": "bc2ced569e77cad8f56709360debd255ef3eb6c02a5ae2d4f4ca9ea35df77d75",
+      "phash": "1010110001100000110110011100101101100110100011100011001111001100"
+    },
+    {
+      "original": "riped_tomato_72.jpeg",
+      "representante": "riped_tomato_11.jpeg",
+      "sha256": "bc2ced569e77cad8f56709360debd255ef3eb6c02a5ae2d4f4ca9ea35df77d75",
+      "phash": "1010110001100000110110011100101101100110100011100011001111001100"
+    },
+    {
+      "original": "riped_tomato_12.jpeg",
+      "representante": "riped_tomato_12.jpeg",
+      "sha256": "59a74742d0970c7f7b0f55881f068086e8e741a372491928f5f3882f9af00554",
+      "phash": "1101010010010010100001100110100101001000100101111010101101111011"
+    },
+    {
+      "original": "riped_tomato_48.jpeg",
+      "representante": "riped_tomato_12.jpeg",
+      "sha256": "59a74742d0970c7f7b0f55881f068086e8e741a372491928f5f3882f9af00554",
+      "phash": "1101010010010010100001100110100101001000100101111010101101111011"
+    },
+    {
+      "original": "riped_tomato_75.jpeg",
+      "representante": "riped_tomato_12.jpeg",
+      "sha256": "59a74742d0970c7f7b0f55881f068086e8e741a372491928f5f3882f9af00554",
+      "phash": "1101010010010010100001100110100101001000100101111010101101111011"
+    },
+    {
+      "original": "riped_tomato_13.jpeg",
+      "representante": "riped_tomato_13.jpeg",
+      "sha256": "8b296b6c36384210ecb5341015e432c32d054ab7fbe285dfdf8567e1b1d29b96",
+      "phash": "1111000101000110100101010011101110100000010100111100010101111010"
+    },
+    {
+      "original": "riped_tomato_35.jpeg",
+      "representante": "riped_tomato_13.jpeg",
+      "sha256": "8b296b6c36384210ecb5341015e432c32d054ab7fbe285dfdf8567e1b1d29b96",
+      "phash": "1111000101000110100101010011101110100000010100111100010101111010"
+    },
+    {
+      "original": "riped_tomato_49.jpeg",
+      "representante": "riped_tomato_13.jpeg",
+      "sha256": "8b296b6c36384210ecb5341015e432c32d054ab7fbe285dfdf8567e1b1d29b96",
+      "phash": "1111000101000110100101010011101110100000010100111100010101111010"
+    },
+    {
+      "original": "riped_tomato_76.jpeg",
+      "representante": "riped_tomato_13.jpeg",
+      "sha256": "ffc9798b7c0123bbb3d7ed6a61b583f906c50ab706902d9643007e80e1fd5536",
+      "phash": "1111000101000110100101010011101110100000010100111100010101111010"
+    },
+    {
+      "original": "riped_tomato_14.jpeg",
+      "representante": "riped_tomato_50.jpeg",
+      "sha256": "6ec1b8f2569f236632907dd3206b8dcef025f8d7a03504ef18c4b31612d6e589",
+      "phash": "1110101000111111001110110101110000111000100010101110001000000011"
+    },
+    {
+      "original": "riped_tomato_50.jpeg",
+      "representante": "riped_tomato_50.jpeg",
+      "sha256": "6ec1b8f2569f236632907dd3206b8dcef025f8d7a03504ef18c4b31612d6e589",
+      "phash": "1110101000111111001110110101110000111000100010101110001000000011"
+    },
+    {
+      "original": "riped_tomato_15.jpeg",
+      "representante": "riped_tomato_15.jpeg",
+      "sha256": "5406accacd7eb146d54b3a7dadd945011952fa070e4517bc70e13b6b76b2c537",
+      "phash": "1100000010010011001101101110100100001011010111111100111011100000"
+    },
+    {
+      "original": "riped_tomato_51.jpeg",
+      "representante": "riped_tomato_15.jpeg",
+      "sha256": "5406accacd7eb146d54b3a7dadd945011952fa070e4517bc70e13b6b76b2c537",
+      "phash": "1100000010010011001101101110100100001011010111111100111011100000"
+    },
+    {
+      "original": "riped_tomato_77.jpeg",
+      "representante": "riped_tomato_15.jpeg",
+      "sha256": "5406accacd7eb146d54b3a7dadd945011952fa070e4517bc70e13b6b76b2c537",
+      "phash": "1100000010010011001101101110100100001011010111111100111011100000"
+    },
+    {
+      "original": "riped_tomato_16.jpeg",
+      "representante": "riped_tomato_16.jpeg",
+      "sha256": "01eea95cb0568749b2bd41e99639e9bb46829f0b69ecc7ace4eccb03741f5a7d",
+      "phash": "1110101110011011100001100001110000011110011001100110000101100101"
+    },
+    {
+      "original": "riped_tomato_36.jpeg",
+      "representante": "riped_tomato_16.jpeg",
+      "sha256": "01eea95cb0568749b2bd41e99639e9bb46829f0b69ecc7ace4eccb03741f5a7d",
+      "phash": "1110101110011011100001100001110000011110011001100110000101100101"
+    },
+    {
+      "original": "riped_tomato_53.jpeg",
+      "representante": "riped_tomato_16.jpeg",
+      "sha256": "01eea95cb0568749b2bd41e99639e9bb46829f0b69ecc7ace4eccb03741f5a7d",
+      "phash": "1110101110011011100001100001110000011110011001100110000101100101"
+    },
+    {
+      "original": "riped_tomato_79.jpeg",
+      "representante": "riped_tomato_16.jpeg",
+      "sha256": "01eea95cb0568749b2bd41e99639e9bb46829f0b69ecc7ace4eccb03741f5a7d",
+      "phash": "1110101110011011100001100001110000011110011001100110000101100101"
+    },
+    {
+      "original": "riped_tomato_17.jpeg",
+      "representante": "riped_tomato_17.jpeg",
+      "sha256": "fdeccd03815367d55c3b28f1ef690f33b04864c3b90d68bccec87d16df9a8406",
+      "phash": "1011110111000000110001000011101110000011001111001100101001101101"
+    },
+    {
+      "original": "riped_tomato_55.jpeg",
+      "representante": "riped_tomato_17.jpeg",
+      "sha256": "0215760ad7cea4f8356ef280f3a14747e6b9fb60f05d6bcd5ab22106918fbb56",
+      "phash": "1011100111000000110001000011101110010011001111001100101001101101"
+    },
+    {
+      "original": "riped_tomato_18.jpeg",
+      "representante": "riped_tomato_84.jpeg",
+      "sha256": "c3e8060f100fa4a2540fae2d1cc94a22b867ade0a429f6b7c732e4c4fe4e6df1",
+      "phash": "1001011000101001011100100110111000010001110101000111101111001001"
+    },
+    {
+      "original": "riped_tomato_84.jpeg",
+      "representante": "riped_tomato_84.jpeg",
+      "sha256": "c3e8060f100fa4a2540fae2d1cc94a22b867ade0a429f6b7c732e4c4fe4e6df1",
+      "phash": "1001011000101001011100100110111000010001110101000111101111001001"
+    },
+    {
+      "original": "riped_tomato_19.jpeg",
+      "representante": "riped_tomato_19.jpeg",
+      "sha256": "6f87d973f999903d3172222b665f97bc3119de580b728191bced03041e244d62",
+      "phash": "1011101011001010110011000010001111000001111101101100001100011100"
+    },
+    {
+      "original": "riped_tomato_91.jpeg",
+      "representante": "riped_tomato_19.jpeg",
+      "sha256": "6f87d973f999903d3172222b665f97bc3119de580b728191bced03041e244d62",
+      "phash": "1011101011001010110011000010001111000001111101101100001100011100"
+    },
+    {
+      "original": "riped_tomato_2.jpeg",
+      "representante": "riped_tomato_2.jpeg",
+      "sha256": "fc3902fe5a18bb0a62c012f99c824ed854f31294bec1eff9f4b9a40e606dc8e2",
+      "phash": "1110101010010001100101011011010110000101011010111111000110010000"
+    },
+    {
+      "original": "riped_tomato_58.jpeg",
+      "representante": "riped_tomato_2.jpeg",
+      "sha256": "fc3902fe5a18bb0a62c012f99c824ed854f31294bec1eff9f4b9a40e606dc8e2",
+      "phash": "1110101010010001100101011011010110000101011010111111000110010000"
+    },
+    {
+      "original": "riped_tomato_20.jpeg",
+      "representante": "riped_tomato_20.jpeg",
+      "sha256": "233aa271df5aaf6c3340fa4f22c7aad576e22a67541bec259b5008707f3d5875",
+      "phash": "1010111011100110100101010010100111010001000100011100011110010011"
+    },
+    {
+      "original": "riped_tomato_38.jpeg",
+      "representante": "riped_tomato_20.jpeg",
+      "sha256": "233aa271df5aaf6c3340fa4f22c7aad576e22a67541bec259b5008707f3d5875",
+      "phash": "1010111011100110100101010010100111010001000100011100011110010011"
+    },
+    {
+      "original": "riped_tomato_56.jpeg",
+      "representante": "riped_tomato_20.jpeg",
+      "sha256": "233aa271df5aaf6c3340fa4f22c7aad576e22a67541bec259b5008707f3d5875",
+      "phash": "1010111011100110100101010010100111010001000100011100011110010011"
+    },
+    {
+      "original": "riped_tomato_85.jpeg",
+      "representante": "riped_tomato_20.jpeg",
+      "sha256": "233aa271df5aaf6c3340fa4f22c7aad576e22a67541bec259b5008707f3d5875",
+      "phash": "1010111011100110100101010010100111010001000100011100011110010011"
+    },
+    {
+      "original": "riped_tomato_21.jpeg",
+      "representante": "riped_tomato_21.jpeg",
+      "sha256": "5cdcb7fff998fb44a76e5ddef3e9d9005588ae151f012cc3537ed04a97b6a115",
+      "phash": "1110010110011010100000011101110001001011001101010101011100111000"
+    },
+    {
+      "original": "riped_tomato_39.jpeg",
+      "representante": "riped_tomato_21.jpeg",
+      "sha256": "5cdcb7fff998fb44a76e5ddef3e9d9005588ae151f012cc3537ed04a97b6a115",
+      "phash": "1110010110011010100000011101110001001011001101010101011100111000"
+    },
+    {
+      "original": "riped_tomato_57.jpeg",
+      "representante": "riped_tomato_21.jpeg",
+      "sha256": "5cdcb7fff998fb44a76e5ddef3e9d9005588ae151f012cc3537ed04a97b6a115",
+      "phash": "1110010110011010100000011101110001001011001101010101011100111000"
+    },
+    {
+      "original": "riped_tomato_86.jpeg",
+      "representante": "riped_tomato_21.jpeg",
+      "sha256": "5cdcb7fff998fb44a76e5ddef3e9d9005588ae151f012cc3537ed04a97b6a115",
+      "phash": "1110010110011010100000011101110001001011001101010101011100111000"
+    },
+    {
+      "original": "riped_tomato_22.jpeg",
+      "representante": "riped_tomato_22.jpeg",
+      "sha256": "f62cc0f46b3af36e8a2698c75050d35abcc364d4763cd3477a9e2557898913bb",
+      "phash": "1010010011011011011011011110000100000110111001010111000100011001"
+    },
+    {
+      "original": "riped_tomato_88.jpeg",
+      "representante": "riped_tomato_22.jpeg",
+      "sha256": "f62cc0f46b3af36e8a2698c75050d35abcc364d4763cd3477a9e2557898913bb",
+      "phash": "1010010011011011011011011110000100000110111001010111000100011001"
+    },
+    {
+      "original": "riped_tomato_23.jpeg",
+      "representante": "riped_tomato_23.jpeg",
+      "sha256": "8fd1c93384ac9fb1d56dd0d471483ef9e51f4c338ee95ae6330b9040dd4f1c18",
+      "phash": "1100000101000001000111110000111011011011001110010010111000111011"
+    },
+    {
+      "original": "riped_tomato_89.jpeg",
+      "representante": "riped_tomato_23.jpeg",
+      "sha256": "8fd1c93384ac9fb1d56dd0d471483ef9e51f4c338ee95ae6330b9040dd4f1c18",
+      "phash": "1100000101000001000111110000111011011011001110010010111000111011"
+    },
+    {
+      "original": "riped_tomato_24.jpeg",
+      "representante": "riped_tomato_24.jpeg",
+      "sha256": "2c90ac757e5df5fa7195143965acd626ea261a4db417a693901062962aad3685",
+      "phash": "1010101011101111011101011001001011001001001001010001111000010100"
+    },
+    {
+      "original": "riped_tomato_34.jpeg",
+      "representante": "riped_tomato_24.jpeg",
+      "sha256": "2c90ac757e5df5fa7195143965acd626ea261a4db417a693901062962aad3685",
+      "phash": "1010101011101111011101011001001011001001001001010001111000010100"
+    },
+    {
+      "original": "riped_tomato_41.jpeg",
+      "representante": "riped_tomato_24.jpeg",
+      "sha256": "2c90ac757e5df5fa7195143965acd626ea261a4db417a693901062962aad3685",
+      "phash": "1010101011101111011101011001001011001001001001010001111000010100"
+    },
+    {
+      "original": "riped_tomato_93.jpeg",
+      "representante": "riped_tomato_24.jpeg",
+      "sha256": "2c90ac757e5df5fa7195143965acd626ea261a4db417a693901062962aad3685",
+      "phash": "1010101011101111011101011001001011001001001001010001111000010100"
+    },
+    {
+      "original": "riped_tomato_25.jpeg",
+      "representante": "riped_tomato_25.jpeg",
+      "sha256": "1fc48e368b56a70c1cc881790cf098a5f3af2a9270f3834e5c2c88a128116c85",
+      "phash": "1111111100000000111100000001111111000000001101101101110111000001"
+    },
+    {
+      "original": "riped_tomato_37.jpeg",
+      "representante": "riped_tomato_25.jpeg",
+      "sha256": "1fc48e368b56a70c1cc881790cf098a5f3af2a9270f3834e5c2c88a128116c85",
+      "phash": "1111111100000000111100000001111111000000001101101101110111000001"
+    },
+    {
+      "original": "riped_tomato_94.jpeg",
+      "representante": "riped_tomato_25.jpeg",
+      "sha256": "1fc48e368b56a70c1cc881790cf098a5f3af2a9270f3834e5c2c88a128116c85",
+      "phash": "1111111100000000111100000001111111000000001101101101110111000001"
+    },
+    {
+      "original": "riped_tomato_26.jpeg",
+      "representante": "riped_tomato_4.jpeg",
+      "sha256": "f6391fe84bebb3930bde873080321a1314f7d9b107ef2c23588419c704731e57",
+      "phash": "1011010010111100000111111101000101100111010010001010011001110000"
+    },
+    {
+      "original": "riped_tomato_4.jpeg",
+      "representante": "riped_tomato_4.jpeg",
+      "sha256": "f6391fe84bebb3930bde873080321a1314f7d9b107ef2c23588419c704731e57",
+      "phash": "1011010010111100000111111101000101100111010010001010011001110000"
+    },
+    {
+      "original": "riped_tomato_60.jpeg",
+      "representante": "riped_tomato_4.jpeg",
+      "sha256": "f6391fe84bebb3930bde873080321a1314f7d9b107ef2c23588419c704731e57",
+      "phash": "1011010010111100000111111101000101100111010010001010011001110000"
+    },
+    {
+      "original": "riped_tomato_27.jpeg",
+      "representante": "riped_tomato_27.jpeg",
+      "sha256": "e9a2b846f3a3603802bd604bd0fd9c16da1c0aa3f5399da6c3ab53c552d9e8cd",
+      "phash": "1001111110101110011111001101001101100011001100001010001100000001"
+    },
+    {
+      "original": "riped_tomato_43.jpeg",
+      "representante": "riped_tomato_27.jpeg",
+      "sha256": "e9a2b846f3a3603802bd604bd0fd9c16da1c0aa3f5399da6c3ab53c552d9e8cd",
+      "phash": "1001111110101110011111001101001101100011001100001010001100000001"
+    },
+    {
+      "original": "riped_tomato_5.jpeg",
+      "representante": "riped_tomato_27.jpeg",
+      "sha256": "e9a2b846f3a3603802bd604bd0fd9c16da1c0aa3f5399da6c3ab53c552d9e8cd",
+      "phash": "1001111110101110011111001101001101100011001100001010001100000001"
+    },
+    {
+      "original": "riped_tomato_61.jpeg",
+      "representante": "riped_tomato_27.jpeg",
+      "sha256": "e9a2b846f3a3603802bd604bd0fd9c16da1c0aa3f5399da6c3ab53c552d9e8cd",
+      "phash": "1001111110101110011111001101001101100011001100001010001100000001"
+    },
+    {
+      "original": "riped_tomato_28.jpeg",
+      "representante": "riped_tomato_28.jpeg",
+      "sha256": "3ff91692ae205adb6d14e8c7379e175067295e91221420b75be928eec90c3a64",
+      "phash": "1011111111100001110100001001011011000001000111000010011100101101"
+    },
+    {
+      "original": "riped_tomato_92.jpeg",
+      "representante": "riped_tomato_28.jpeg",
+      "sha256": "3ff91692ae205adb6d14e8c7379e175067295e91221420b75be928eec90c3a64",
+      "phash": "1011111111100001110100001001011011000001000111000010011100101101"
+    },
+    {
+      "original": "riped_tomato_29.jpeg",
+      "representante": "riped_tomato_29.jpeg",
+      "sha256": "af6e302b18e28f12929b7c7cb3110cafa49fe1380bd824f7f7813bdc032eb107",
+      "phash": "1011011011001011110100000010110011001111110001101100010000111000"
+    },
+    {
+      "original": "riped_tomato_44.jpeg",
+      "representante": "riped_tomato_29.jpeg",
+      "sha256": "af6e302b18e28f12929b7c7cb3110cafa49fe1380bd824f7f7813bdc032eb107",
+      "phash": "1011011011001011110100000010110011001111110001101100010000111000"
+    },
+    {
+      "original": "riped_tomato_62.jpeg",
+      "representante": "riped_tomato_29.jpeg",
+      "sha256": "8754a6cb58ebd949f75e9f057af7f9aa0024b81517a7dffb97f96d1b15854509",
+      "phash": "1011011011001011110100000010110011001111110001101100010000111000"
+    },
+    {
+      "original": "riped_tomato_3.jpeg",
+      "representante": "riped_tomato_3.jpeg",
+      "sha256": "429d76e3235f6530c04a17655dceaac1e794cd84369b48c4a442f9dbc38bdece",
+      "phash": "1011110010010001110010111011111001000100001000010010111101100110"
+    },
+    {
+      "original": "riped_tomato_30.jpeg",
+      "representante": "riped_tomato_30.jpeg",
+      "sha256": "e12da718a2d3c790208519efc311c952b51100ebef62c7908ffd100432f84312",
+      "phash": "1011110011001010110000001010010111000100110010111001010010110111"
+    },
+    {
+      "original": "riped_tomato_6.jpeg",
+      "representante": "riped_tomato_30.jpeg",
+      "sha256": "e12da718a2d3c790208519efc311c952b51100ebef62c7908ffd100432f84312",
+      "phash": "1011110011001010110000001010010111000100110010111001010010110111"
+    },
+    {
+      "original": "riped_tomato_65.jpeg",
+      "representante": "riped_tomato_30.jpeg",
+      "sha256": "e12da718a2d3c790208519efc311c952b51100ebef62c7908ffd100432f84312",
+      "phash": "1011110011001010110000001010010111000100110010111001010010110111"
+    },
+    {
+      "original": "riped_tomato_31.jpeg",
+      "representante": "riped_tomato_31.jpeg",
+      "sha256": "35600c6dda2d0f4916dba76eaf22d6105aa4b69283b2e42580fd85683ed3fd8d",
+      "phash": "1011101100000010011110110010100000101100111111101100010010110010"
+    },
+    {
+      "original": "riped_tomato_66.jpeg",
+      "representante": "riped_tomato_31.jpeg",
+      "sha256": "35600c6dda2d0f4916dba76eaf22d6105aa4b69283b2e42580fd85683ed3fd8d",
+      "phash": "1011101100000010011110110010100000101100111111101100010010110010"
+    },
+    {
+      "original": "riped_tomato_32.jpeg",
+      "representante": "riped_tomato_32.jpeg",
+      "sha256": "d187a42fd282130ba922b9e5456ac4b2651d019de7789038273584040514078f",
+      "phash": "1100101111001100010010010110110011011010000110000010011100111011"
+    },
+    {
+      "original": "riped_tomato_7.jpeg",
+      "representante": "riped_tomato_32.jpeg",
+      "sha256": "d187a42fd282130ba922b9e5456ac4b2651d019de7789038273584040514078f",
+      "phash": "1100101111001100010010010110110011011010000110000010011100111011"
+    },
+    {
+      "original": "riped_tomato_33.jpeg",
+      "representante": "riped_tomato_33.jpeg",
+      "sha256": "462b100237ee14225922f8277241cc6618f92e00f3e31d662a8da64c41225c81",
+      "phash": "1110101110010101101100001100001010000101000110101001111101101010"
+    },
+    {
+      "original": "riped_tomato_69.jpeg",
+      "representante": "riped_tomato_33.jpeg",
+      "sha256": "462b100237ee14225922f8277241cc6618f92e00f3e31d662a8da64c41225c81",
+      "phash": "1110101110010101101100001100001010000101000110101001111101101010"
+    },
+    {
+      "original": "riped_tomato_40.jpeg",
+      "representante": "riped_tomato_40.jpeg",
+      "sha256": "1b934d8a922b7dd962fb2696796cb7ad95ffc6f09a046a749ad23a96ab155f29",
+      "phash": "1011111101001111111000001111100010010101100000011000011000100101"
+    },
+    {
+      "original": "riped_tomato_67.jpeg",
+      "representante": "riped_tomato_40.jpeg",
+      "sha256": "d24a36ed615d724892eb4ed491f0cddd3213d3672bc53410c860bc0862aa4292",
+      "phash": "1011111101001111111000001111100010010101100000011000011000100101"
+    },
+    {
+      "original": "riped_tomato_42.jpeg",
+      "representante": "riped_tomato_42.jpeg",
+      "sha256": "e10e9ceee629df054112a589e0a923aebe30ab6e9312876908eb995581dfea87",
+      "phash": "1010110111010010110100000010101100100011001111000110110111010010"
+    },
+    {
+      "original": "riped_tomato_47.jpeg",
+      "representante": "riped_tomato_42.jpeg",
+      "sha256": "e10e9ceee629df054112a589e0a923aebe30ab6e9312876908eb995581dfea87",
+      "phash": "1010110111010010110100000010101100100011001111000110110111010010"
+    },
+    {
+      "original": "riped_tomato_96.jpeg",
+      "representante": "riped_tomato_42.jpeg",
+      "sha256": "e10e9ceee629df054112a589e0a923aebe30ab6e9312876908eb995581dfea87",
+      "phash": "1010110111010010110100000010101100100011001111000110110111010010"
+    },
+    {
+      "original": "riped_tomato_45.jpeg",
+      "representante": "riped_tomato_45.jpeg",
+      "sha256": "d0300e4a08a2e05c8da48cad1a5e8853a36db2562ddced50cb8f710510f241f9",
+      "phash": "1001011001011011010110011110011100100010010111000011001010101100"
+    },
+    {
+      "original": "riped_tomato_63.jpeg",
+      "representante": "riped_tomato_45.jpeg",
+      "sha256": "d0300e4a08a2e05c8da48cad1a5e8853a36db2562ddced50cb8f710510f241f9",
+      "phash": "1001011001011011010110011110011100100010010111000011001010101100"
+    },
+    {
+      "original": "riped_tomato_46.jpeg",
+      "representante": "riped_tomato_46.jpeg",
+      "sha256": "4ef82a25cc1f12039c756fc45c023260afeaf4e7bdada33f4296a10fbf01fb6b",
+      "phash": "1110111010010100110000000111101110000001011010100011111011100001"
+    },
+    {
+      "original": "riped_tomato_95.jpeg",
+      "representante": "riped_tomato_46.jpeg",
+      "sha256": "4ef82a25cc1f12039c756fc45c023260afeaf4e7bdada33f4296a10fbf01fb6b",
+      "phash": "1110111010010100110000000111101110000001011010100011111011100001"
+    },
+    {
+      "original": "riped_tomato_52.jpeg",
+      "representante": "riped_tomato_52.jpeg",
+      "sha256": "6782b4e5db499fe1ac2932426f75740c5879e4b4992fb860f5f70dda08aaadff",
+      "phash": "1000011111001001110100100100111000111010000110010101010110011101"
+    },
+    {
+      "original": "riped_tomato_59.jpeg",
+      "representante": "riped_tomato_59.jpeg",
+      "sha256": "45aabdb50ea262dabc5dcfd95a1a6bb83527983a5f63e6cc87e702bceaadb437",
+      "phash": "1011100011000101110000000011011110000111011110001100011101111000"
+    },
+    {
+      "original": "riped_tomato_71.jpeg",
+      "representante": "riped_tomato_59.jpeg",
+      "sha256": "45aabdb50ea262dabc5dcfd95a1a6bb83527983a5f63e6cc87e702bceaadb437",
+      "phash": "1011100011000101110000000011011110000111011110001100011101111000"
+    },
+    {
+      "original": "unriped_tomato_18.jpeg",
+      "representante": "riped_tomato_59.jpeg",
+      "sha256": "45aabdb50ea262dabc5dcfd95a1a6bb83527983a5f63e6cc87e702bceaadb437",
+      "phash": "1011100011000101110000000011011110000111011110001100011101111000"
+    },
+    {
+      "original": "riped_tomato_64.jpeg",
+      "representante": "riped_tomato_64.jpeg",
+      "sha256": "8edd663bd449ece1d5ccf48e63a4be7fc22d02da98b2c092dedab11e10f22717",
+      "phash": "1001100100011010101101001001110101011010101011000101000011101011"
+    },
+    {
+      "original": "riped_tomato_68.jpeg",
+      "representante": "riped_tomato_68.jpeg",
+      "sha256": "c0cccfd84ebc811ba932d76c98315fd0f868adda306250d6ab55b5e3c97332d4",
+      "phash": "1001100011011101110101101101101000000001000001101001111001011110"
+    },
+    {
+      "original": "riped_tomato_70.jpeg",
+      "representante": "riped_tomato_70.jpeg",
+      "sha256": "c6be04925edc93b148e7c75aad31633abcbaacefb10766e87d34dc174d4adc5e",
+      "phash": "1100011110110100101111001100001111000100010011000111100001101001"
+    },
+    {
+      "original": "riped_tomato_8.jpeg",
+      "representante": "riped_tomato_70.jpeg",
+      "sha256": "c6be04925edc93b148e7c75aad31633abcbaacefb10766e87d34dc174d4adc5e",
+      "phash": "1100011110110100101111001100001111000100010011000111100001101001"
+    },
+    {
+      "original": "riped_tomato_73.jpeg",
+      "representante": "riped_tomato_73.jpeg",
+      "sha256": "7cff08d95bcf78e814c22a3f750df05cf258617efdfe39f367271434f9671015",
+      "phash": "1010011001010011100001111101110001111001010110010001011110001000"
+    },
+    {
+      "original": "riped_tomato_74.jpeg",
+      "representante": "riped_tomato_74.jpeg",
+      "sha256": "f2c299b14c507b7a43468fd1000dc2026c375ff5e558484fcb497baa05a2d0f3",
+      "phash": "1111110101101010110110100111100100010011101100010100100000000011"
+    },
+    {
+      "original": "riped_tomato_78.jpeg",
+      "representante": "riped_tomato_78.jpeg",
+      "sha256": "2e1cf68cf491aa6857699a5fe832e0037565b7d57aa075fc7c79b6002c1c1ed1",
+      "phash": "1111001000100001110010010001101000100001100011110011111111000111"
+    },
+    {
+      "original": "riped_tomato_80.jpeg",
+      "representante": "riped_tomato_80.jpeg",
+      "sha256": "4840df1373053a01b30304e283565a3473c6946005f87d2babee267a11165184",
+      "phash": "1101000011010000111010111111011011011100001101100000110010000011"
+    },
+    {
+      "original": "riped_tomato_81.jpeg",
+      "representante": "riped_tomato_81.jpeg",
+      "sha256": "8d060047503c3acaa5a5ebcb6ffa11dcaca0446cef7683db2f1b2bdb9e226f59",
+      "phash": "1100001011010100000101001001001101101101110111011100100101101001"
+    },
+    {
+      "original": "riped_tomato_82.jpeg",
+      "representante": "riped_tomato_82.jpeg",
+      "sha256": "6d6fe3edb7dc38df0f2db88a400eb29b4f25ef06b9c403e50c6ee30ac2eb6ae6",
+      "phash": "1010010110111010101000100110001101101011101011011000000010011101"
+    },
+    {
+      "original": "riped_tomato_83.jpeg",
+      "representante": "riped_tomato_83.jpeg",
+      "sha256": "5e90902f8baa7075b2acd51980b3cbb2ee6a250aba183ebf2d150311c0b79f8d",
+      "phash": "1001000011100000011011100110101101011100100010010111001111010110"
+    },
+    {
+      "original": "riped_tomato_87.jpeg",
+      "representante": "riped_tomato_87.jpeg",
+      "sha256": "8d9bf681dbdf90392a6ec5c18cff3f7c684afe277e59e833bcf6a72747b76821",
+      "phash": "1101001010101101100000011101011100101111011000000110100010010111"
+    },
+    {
+      "original": "riped_tomato_9.jpeg",
+      "representante": "riped_tomato_9.jpeg",
+      "sha256": "10d359e178d081d4ac41efed05ef3785ac88de611615e97fdbf237c9b076e48b",
+      "phash": "1011101111000011100100001010010010001101000111101100111000111001"
+    },
+    {
+      "original": "riped_tomato_90.jpeg",
+      "representante": "riped_tomato_9.jpeg",
+      "sha256": "10d359e178d081d4ac41efed05ef3785ac88de611615e97fdbf237c9b076e48b",
+      "phash": "1011101111000011100100001010010010001101000111101100111000111001"
+    },
+    {
+      "original": "riped_tomato_97.jpeg",
+      "representante": "riped_tomato_97.jpeg",
+      "sha256": "a1f0d23977550aa88b247e23aefd747a2bc4e47027560bf76caeb9eec82841a9",
+      "phash": "1001110011011010100110100100101001000111101001010101101001100101"
+    },
+    {
+      "original": "unriped_tomato_1.jpeg",
+      "representante": "unriped_tomato_1.jpeg",
+      "sha256": "ef493b4baef6d1e63c5c0e93f5af7eed6aab9e086a0bc6873c3536f2cee5e786",
+      "phash": "1111010111010011001110101101100110000010011001010001100001011010"
+    },
+    {
+      "original": "unriped_tomato_19.jpeg",
+      "representante": "unriped_tomato_1.jpeg",
+      "sha256": "ef493b4baef6d1e63c5c0e93f5af7eed6aab9e086a0bc6873c3536f2cee5e786",
+      "phash": "1111010111010011001110101101100110000010011001010001100001011010"
+    },
+    {
+      "original": "unriped_tomato_38.jpeg",
+      "representante": "unriped_tomato_1.jpeg",
+      "sha256": "ef493b4baef6d1e63c5c0e93f5af7eed6aab9e086a0bc6873c3536f2cee5e786",
+      "phash": "1111010111010011001110101101100110000010011001010001100001011010"
+    },
+    {
+      "original": "unriped_tomato_66.jpeg",
+      "representante": "unriped_tomato_1.jpeg",
+      "sha256": "ef493b4baef6d1e63c5c0e93f5af7eed6aab9e086a0bc6873c3536f2cee5e786",
+      "phash": "1111010111010011001110101101100110000010011001010001100001011010"
+    },
+    {
+      "original": "unriped_tomato_10.jpeg",
+      "representante": "unriped_tomato_10.jpeg",
+      "sha256": "05ef8c06514dbc3958ac50dbf913c1879a0f4bc919f06d65b889b9a44c7d6b27",
+      "phash": "1011110111010000110000000010111100001110001101101101101001100011"
+    },
+    {
+      "original": "unriped_tomato_22.jpeg",
+      "representante": "unriped_tomato_10.jpeg",
+      "sha256": "05ef8c06514dbc3958ac50dbf913c1879a0f4bc919f06d65b889b9a44c7d6b27",
+      "phash": "1011110111010000110000000010111100001110001101101101101001100011"
+    },
+    {
+      "original": "unriped_tomato_69.jpeg",
+      "representante": "unriped_tomato_10.jpeg",
+      "sha256": "05ef8c06514dbc3958ac50dbf913c1879a0f4bc919f06d65b889b9a44c7d6b27",
+      "phash": "1011110111010000110000000010111100001110001101101101101001100011"
+    },
+    {
+      "original": "unriped_tomato_9.jpeg",
+      "representante": "unriped_tomato_10.jpeg",
+      "sha256": "05ef8c06514dbc3958ac50dbf913c1879a0f4bc919f06d65b889b9a44c7d6b27",
+      "phash": "1011110111010000110000000010111100001110001101101101101001100011"
+    },
+    {
+      "original": "unriped_tomato_11.jpeg",
+      "representante": "unriped_tomato_11.jpeg",
+      "sha256": "55855ea54ed2020e42ae441c36f7bb325f35804c43f5981a36ae555cce150b03",
+      "phash": "1110010101100011100100101011100011001101110011001100110000110100"
+    },
+    {
+      "original": "unriped_tomato_24.jpeg",
+      "representante": "unriped_tomato_11.jpeg",
+      "sha256": "55855ea54ed2020e42ae441c36f7bb325f35804c43f5981a36ae555cce150b03",
+      "phash": "1110010101100011100100101011100011001101110011001100110000110100"
+    },
+    {
+      "original": "unriped_tomato_29.jpeg",
+      "representante": "unriped_tomato_11.jpeg",
+      "sha256": "55855ea54ed2020e42ae441c36f7bb325f35804c43f5981a36ae555cce150b03",
+      "phash": "1110010101100011100100101011100011001101110011001100110000110100"
+    },
+    {
+      "original": "unriped_tomato_12.jpeg",
+      "representante": "unriped_tomato_12.jpeg",
+      "sha256": "4c8d833bb10f86516454bbc3611d2e1479ecbe71e701d661287bc017802c3fdc",
+      "phash": "1000001000011010011011011101011010100110011011000001100111011110"
+    },
+    {
+      "original": "unriped_tomato_26.jpeg",
+      "representante": "unriped_tomato_12.jpeg",
+      "sha256": "4c8d833bb10f86516454bbc3611d2e1479ecbe71e701d661287bc017802c3fdc",
+      "phash": "1000001000011010011011011101011010100110011011000001100111011110"
+    },
+    {
+      "original": "unriped_tomato_42.jpeg",
+      "representante": "unriped_tomato_12.jpeg",
+      "sha256": "4c8d833bb10f86516454bbc3611d2e1479ecbe71e701d661287bc017802c3fdc",
+      "phash": "1000001000011010011011011101011010100110011011000001100111011110"
+    },
+    {
+      "original": "unriped_tomato_44.jpeg",
+      "representante": "unriped_tomato_12.jpeg",
+      "sha256": "4c8d833bb10f86516454bbc3611d2e1479ecbe71e701d661287bc017802c3fdc",
+      "phash": "1000001000011010011011011101011010100110011011000001100111011110"
+    },
+    {
+      "original": "unriped_tomato_75.jpeg",
+      "representante": "unriped_tomato_12.jpeg",
+      "sha256": "4c8d833bb10f86516454bbc3611d2e1479ecbe71e701d661287bc017802c3fdc",
+      "phash": "1000001000011010011011011101011010100110011011000001100111011110"
+    },
+    {
+      "original": "unriped_tomato_13.jpeg",
+      "representante": "unriped_tomato_13.jpeg",
+      "sha256": "fd39a9b100c8a4dd46ea12f5898da348f338eb15d8d4bb5da5301c8641c3f280",
+      "phash": "1001010010010111011100001100100011111100001110111100000101101100"
+    },
+    {
+      "original": "unriped_tomato_52.jpeg",
+      "representante": "unriped_tomato_13.jpeg",
+      "sha256": "32202a3b8b23a1ecf31f821d9739d9c5eb02faa10d6951cb74f31f9468e653e5",
+      "phash": "1001010010010111011100001100100011111100001110111100000101101100"
+    },
+    {
+      "original": "unriped_tomato_78.jpeg",
+      "representante": "unriped_tomato_13.jpeg",
+      "sha256": "32202a3b8b23a1ecf31f821d9739d9c5eb02faa10d6951cb74f31f9468e653e5",
+      "phash": "1001010010010111011100001100100011111100001110111100000101101100"
+    },
+    {
+      "original": "unriped_tomato_14.jpeg",
+      "representante": "unriped_tomato_14.jpeg",
+      "sha256": "259d733025c95e1141c32100f3d5f745f5a4ca451792f37880ad8a2f4d920242",
+      "phash": "1100111001110011011111000100110001110011110011110000000110010000"
+    },
+    {
+      "original": "unriped_tomato_28.jpeg",
+      "representante": "unriped_tomato_14.jpeg",
+      "sha256": "259d733025c95e1141c32100f3d5f745f5a4ca451792f37880ad8a2f4d920242",
+      "phash": "1100111001110011011111000100110001110011110011110000000110010000"
+    },
+    {
+      "original": "unriped_tomato_45.jpeg",
+      "representante": "unriped_tomato_14.jpeg",
+      "sha256": "259d733025c95e1141c32100f3d5f745f5a4ca451792f37880ad8a2f4d920242",
+      "phash": "1100111001110011011111000100110001110011110011110000000110010000"
+    },
+    {
+      "original": "unriped_tomato_53.jpeg",
+      "representante": "unriped_tomato_14.jpeg",
+      "sha256": "259d733025c95e1141c32100f3d5f745f5a4ca451792f37880ad8a2f4d920242",
+      "phash": "1100111001110011011111000100110001110011110011110000000110010000"
+    },
+    {
+      "original": "unriped_tomato_79.jpeg",
+      "representante": "unriped_tomato_14.jpeg",
+      "sha256": "259d733025c95e1141c32100f3d5f745f5a4ca451792f37880ad8a2f4d920242",
+      "phash": "1100111001110011011111000100110001110011110011110000000110010000"
+    },
+    {
+      "original": "unriped_tomato_15.jpeg",
+      "representante": "unriped_tomato_15.jpeg",
+      "sha256": "f3f08bc7ab3c7b6fbfb092e8400c6efc5b816828ec4d03f7f390fcfd70976710",
+      "phash": "1101110010010001001011010100110011110010001100110110001100100111"
+    },
+    {
+      "original": "unriped_tomato_70.jpeg",
+      "representante": "unriped_tomato_15.jpeg",
+      "sha256": "f3f08bc7ab3c7b6fbfb092e8400c6efc5b816828ec4d03f7f390fcfd70976710",
+      "phash": "1101110010010001001011010100110011110010001100110110001100100111"
+    },
+    {
+      "original": "unriped_tomato_16.jpeg",
+      "representante": "unriped_tomato_16.jpeg",
+      "sha256": "03d04afd6d8b895fe6c28cbed5f41e6c7171760f62bf97d94dc5e4d42e96f2b1",
+      "phash": "1001010011100101011100111001100100110011001001111100110001110000"
+    },
+    {
+      "original": "unriped_tomato_3.jpeg",
+      "representante": "unriped_tomato_16.jpeg",
+      "sha256": "03d04afd6d8b895fe6c28cbed5f41e6c7171760f62bf97d94dc5e4d42e96f2b1",
+      "phash": "1001010011100101011100111001100100110011001001111100110001110000"
+    },
+    {
+      "original": "unriped_tomato_46.jpeg",
+      "representante": "unriped_tomato_16.jpeg",
+      "sha256": "03d04afd6d8b895fe6c28cbed5f41e6c7171760f62bf97d94dc5e4d42e96f2b1",
+      "phash": "1001010011100101011100111001100100110011001001111100110001110000"
+    },
+    {
+      "original": "unriped_tomato_56.jpeg",
+      "representante": "unriped_tomato_16.jpeg",
+      "sha256": "03d04afd6d8b895fe6c28cbed5f41e6c7171760f62bf97d94dc5e4d42e96f2b1",
+      "phash": "1001010011100101011100111001100100110011001001111100110001110000"
+    },
+    {
+      "original": "unriped_tomato_17.jpeg",
+      "representante": "unriped_tomato_17.jpeg",
+      "sha256": "a1adbcf634a50bd84006996de86ed7c2d51e66044a7cfb9ef56f68b787828e83",
+      "phash": "1111001010010011100100010110111010011010001110010110110010010010"
+    },
+    {
+      "original": "unriped_tomato_23.jpeg",
+      "representante": "unriped_tomato_17.jpeg",
+      "sha256": "439b12995bf73c80e04922dc90b40856aa1cb3925bdf6e64f6fd34b1268ff448",
+      "phash": "1111001010010011100100010110110010011110001110010110110010010010"
+    },
+    {
+      "original": "unriped_tomato_40.jpeg",
+      "representante": "unriped_tomato_17.jpeg",
+      "sha256": "cf3cd92dc2889b18fd67a5d2b27baf833a805d06da752566294c5b779d2abd47",
+      "phash": "1111001010010011100100010110110011011110000110010110110010010010"
+    },
+    {
+      "original": "unriped_tomato_71.jpeg",
+      "representante": "unriped_tomato_17.jpeg",
+      "sha256": "0ae4c06be01a2d4248b9a4611d95275d61dcc1d0084d87ee37a655b75134f473",
+      "phash": "1111001010010111100100010110111010011011001110010100110010010000"
+    },
+    {
+      "original": "unriped_tomato_2.jpeg",
+      "representante": "unriped_tomato_2.jpeg",
+      "sha256": "5719cdddd3398853f79c6fafd82e855669e7c9d8e7f3f664a903b5668d871b46",
+      "phash": "1110010101101110001000001011000001011111000110000000111111101101"
+    },
+    {
+      "original": "unriped_tomato_20.jpeg",
+      "representante": "unriped_tomato_20.jpeg",
+      "sha256": "6652fe04b1ecb3c248b93c3897674893df1e7662f83ff3280d7f49d1309cd173",
+      "phash": "1110101110110001110001000101101010010010011001101001110010110001"
+    },
+    {
+      "original": "unriped_tomato_39.jpeg",
+      "representante": "unriped_tomato_20.jpeg",
+      "sha256": "6652fe04b1ecb3c248b93c3897674893df1e7662f83ff3280d7f49d1309cd173",
+      "phash": "1110101110110001110001000101101010010010011001101001110010110001"
+    },
+    {
+      "original": "unriped_tomato_67.jpeg",
+      "representante": "unriped_tomato_20.jpeg",
+      "sha256": "6652fe04b1ecb3c248b93c3897674893df1e7662f83ff3280d7f49d1309cd173",
+      "phash": "1110101110110001110001000101101010010010011001101001110010110001"
+    },
+    {
+      "original": "unriped_tomato_8.jpeg",
+      "representante": "unriped_tomato_20.jpeg",
+      "sha256": "6652fe04b1ecb3c248b93c3897674893df1e7662f83ff3280d7f49d1309cd173",
+      "phash": "1110101110110001110001000101101010010010011001101001110010110001"
+    },
+    {
+      "original": "unriped_tomato_21.jpeg",
+      "representante": "unriped_tomato_21.jpeg",
+      "sha256": "dabefc445761b9d5544619a5efd9799d32d8595d68b3764f1cf3ef0343507370",
+      "phash": "1110001101001100010100110111010110011100000100100011101110011001"
+    },
+    {
+      "original": "unriped_tomato_72.jpeg",
+      "representante": "unriped_tomato_21.jpeg",
+      "sha256": "dabefc445761b9d5544619a5efd9799d32d8595d68b3764f1cf3ef0343507370",
+      "phash": "1110001101001100010100110111010110011100000100100011101110011001"
+    },
+    {
+      "original": "unriped_tomato_25.jpeg",
+      "representante": "unriped_tomato_25.jpeg",
+      "sha256": "d6c354ac4767e781a15dc2e60df1867d73f0fb87e46315abca7628b2977cd477",
+      "phash": "1111100110011010110000110110101010011110001000011001110001100100"
+    },
+    {
+      "original": "unriped_tomato_32.jpeg",
+      "representante": "unriped_tomato_25.jpeg",
+      "sha256": "d6c354ac4767e781a15dc2e60df1867d73f0fb87e46315abca7628b2977cd477",
+      "phash": "1111100110011010110000110110101010011110001000011001110001100100"
+    },
+    {
+      "original": "unriped_tomato_41.jpeg",
+      "representante": "unriped_tomato_25.jpeg",
+      "sha256": "d6c354ac4767e781a15dc2e60df1867d73f0fb87e46315abca7628b2977cd477",
+      "phash": "1111100110011010110000110110101010011110001000011001110001100100"
+    },
+    {
+      "original": "unriped_tomato_73.jpeg",
+      "representante": "unriped_tomato_25.jpeg",
+      "sha256": "d6c354ac4767e781a15dc2e60df1867d73f0fb87e46315abca7628b2977cd477",
+      "phash": "1111100110011010110000110110101010011110001000011001110001100100"
+    },
+    {
+      "original": "unriped_tomato_27.jpeg",
+      "representante": "unriped_tomato_27.jpeg",
+      "sha256": "ea08de8e6e9e9957f6ab7dbeb849b51783404e83e30ff2e4b767e69b4423b00a",
+      "phash": "1011101011000100110011000110111111001101001100001001001011001001"
+    },
+    {
+      "original": "unriped_tomato_47.jpeg",
+      "representante": "unriped_tomato_27.jpeg",
+      "sha256": "ea08de8e6e9e9957f6ab7dbeb849b51783404e83e30ff2e4b767e69b4423b00a",
+      "phash": "1011101011000100110011000110111111001101001100001001001011001001"
+    },
+    {
+      "original": "unriped_tomato_30.jpeg",
+      "representante": "unriped_tomato_30.jpeg",
+      "sha256": "5e6fa49037d34ff21dd24bfaedaeceba335239c6199d77da3581eb1ededcbb59",
+      "phash": "1101011011110010001001001000110001010011111100101110110001100100"
+    },
+    {
+      "original": "unriped_tomato_4.jpeg",
+      "representante": "unriped_tomato_30.jpeg",
+      "sha256": "5e6fa49037d34ff21dd24bfaedaeceba335239c6199d77da3581eb1ededcbb59",
+      "phash": "1101011011110010001001001000110001010011111100101110110001100100"
+    },
+    {
+      "original": "unriped_tomato_48.jpeg",
+      "representante": "unriped_tomato_30.jpeg",
+      "sha256": "5e6fa49037d34ff21dd24bfaedaeceba335239c6199d77da3581eb1ededcbb59",
+      "phash": "1101011011110010001001001000110001010011111100101110110001100100"
+    },
+    {
+      "original": "unriped_tomato_57.jpeg",
+      "representante": "unriped_tomato_30.jpeg",
+      "sha256": "5e6fa49037d34ff21dd24bfaedaeceba335239c6199d77da3581eb1ededcbb59",
+      "phash": "1101011011110010001001001000110001010011111100101110110001100100"
+    },
+    {
+      "original": "unriped_tomato_31.jpeg",
+      "representante": "unriped_tomato_31.jpeg",
+      "sha256": "82cdc605d08089be0b1ca109ca4400602e713ebb8c8dacc8e543cfb8e486a4ce",
+      "phash": "1011100010110000110001110101100100100011011110011010010101001011"
+    },
+    {
+      "original": "unriped_tomato_49.jpeg",
+      "representante": "unriped_tomato_31.jpeg",
+      "sha256": "82cdc605d08089be0b1ca109ca4400602e713ebb8c8dacc8e543cfb8e486a4ce",
+      "phash": "1011100010110000110001110101100100100011011110011010010101001011"
+    },
+    {
+      "original": "unriped_tomato_59.jpeg",
+      "representante": "unriped_tomato_31.jpeg",
+      "sha256": "82cdc605d08089be0b1ca109ca4400602e713ebb8c8dacc8e543cfb8e486a4ce",
+      "phash": "1011100010110000110001110101100100100011011110011010010101001011"
+    },
+    {
+      "original": "unriped_tomato_33.jpeg",
+      "representante": "unriped_tomato_61.jpeg",
+      "sha256": "98a7f1629c7bfaaf637a59876ba79bc5e517a0dd93df3500581903b61c55a05a",
+      "phash": "1101101110011000010011110000000000001100100110111011001111100111"
+    },
+    {
+      "original": "unriped_tomato_61.jpeg",
+      "representante": "unriped_tomato_61.jpeg",
+      "sha256": "98a7f1629c7bfaaf637a59876ba79bc5e517a0dd93df3500581903b61c55a05a",
+      "phash": "1101101110011000010011110000000000001100100110111011001111100111"
+    },
+    {
+      "original": "unriped_tomato_7.jpeg",
+      "representante": "unriped_tomato_61.jpeg",
+      "sha256": "98a7f1629c7bfaaf637a59876ba79bc5e517a0dd93df3500581903b61c55a05a",
+      "phash": "1101101110011000010011110000000000001100100110111011001111100111"
+    },
+    {
+      "original": "unriped_tomato_34.jpeg",
+      "representante": "unriped_tomato_34.jpeg",
+      "sha256": "e5a3df3688155f46e01b6710f55472d5b32d7e011ca94f583abd46ab79d06c1b",
+      "phash": "1100110000111111000100010111001010001100011110101010011101000110"
+    },
+    {
+      "original": "unriped_tomato_35.jpeg",
+      "representante": "unriped_tomato_35.jpeg",
+      "sha256": "5bbba61a41c79bd14dd7aae91c50d8bd579587532a91021aa0cfb7655f03093a",
+      "phash": "1011000111010011110001101100110001011101001110000011010000110011"
+    },
+    {
+      "original": "unriped_tomato_36.jpeg",
+      "representante": "unriped_tomato_36.jpeg",
+      "sha256": "2800698a746009c0cbde315140dd15c001ffff18395b8a9a78b2b6ab98945e5e",
+      "phash": "1110110010000110100100110101100111011010001110011001100000110110"
+    },
+    {
+      "original": "unriped_tomato_58.jpeg",
+      "representante": "unriped_tomato_36.jpeg",
+      "sha256": "36501a2a511d2dabbd35b74a17a316bddfd9f23b480574edaeb2ec5955b4883e",
+      "phash": "1110110010000110100101110101100110011010001110011001100000110110"
+    },
+    {
+      "original": "unriped_tomato_63.jpeg",
+      "representante": "unriped_tomato_36.jpeg",
+      "sha256": "4af0b45802197d7d07eedaa8252f59ed94c4c688a79487a02027659851533031",
+      "phash": "1110110010000110100101110101100110011010001110011001100000110110"
+    },
+    {
+      "original": "unriped_tomato_37.jpeg",
+      "representante": "unriped_tomato_37.jpeg",
+      "sha256": "eb71fb21ae5d66219bef1b19763180a023b4297d96ea7fa9981ef52938ce83ca",
+      "phash": "1110100111110100100100111100001110100110010010100110100100101001"
+    },
+    {
+      "original": "unriped_tomato_43.jpeg",
+      "representante": "unriped_tomato_43.jpeg",
+      "sha256": "504bfaaba044fcbf2998edff68f1c1962a2eb3ca66749aa2b711a18b81f3e7e9",
+      "phash": "1001101100011010111001000001000101011000011000101101001111110111"
+    },
+    {
+      "original": "unriped_tomato_50.jpeg",
+      "representante": "unriped_tomato_43.jpeg",
+      "sha256": "504bfaaba044fcbf2998edff68f1c1962a2eb3ca66749aa2b711a18b81f3e7e9",
+      "phash": "1001101100011010111001000001000101011000011000101101001111110111"
+    },
+    {
+      "original": "unriped_tomato_76.jpeg",
+      "representante": "unriped_tomato_43.jpeg",
+      "sha256": "504bfaaba044fcbf2998edff68f1c1962a2eb3ca66749aa2b711a18b81f3e7e9",
+      "phash": "1001101100011010111001000001000101011000011000101101001111110111"
+    },
+    {
+      "original": "unriped_tomato_5.jpeg",
+      "representante": "unriped_tomato_5.jpeg",
+      "sha256": "d8da7020e798f1d6f94ed1460e9943a9d49ede8d34cb2c2e74267a436b4b013b",
+      "phash": "1001000111010101011010001001110001100011100101111001111001011000"
+    },
+    {
+      "original": "unriped_tomato_51.jpeg",
+      "representante": "unriped_tomato_51.jpeg",
+      "sha256": "35f4ed0ea777cc5200c4c808d5d18cb60a7ae1ea5a3060a352948b833f35da3e",
+      "phash": "1100011010011100000010010000001110111010110011101010111101001101"
+    },
+    {
+      "original": "unriped_tomato_77.jpeg",
+      "representante": "unriped_tomato_51.jpeg",
+      "sha256": "35f4ed0ea777cc5200c4c808d5d18cb60a7ae1ea5a3060a352948b833f35da3e",
+      "phash": "1100011010011100000010010000001110111010110011101010111101001101"
+    },
+    {
+      "original": "unriped_tomato_54.jpeg",
+      "representante": "unriped_tomato_54.jpeg",
+      "sha256": "de67b842e3bdfdaae0c93de48daf028b18290ff95130d215b939c64d72d38c26",
+      "phash": "1010100100100111101010100001000000111111111001011011010010010101"
+    },
+    {
+      "original": "unriped_tomato_55.jpeg",
+      "representante": "unriped_tomato_55.jpeg",
+      "sha256": "5195a19b8383da00429c20163464f6440c0ea6c98c0cf1897009c45bec2ac50b",
+      "phash": "1001110011000000001101111100110111111000100001100011000011011101"
+    },
+    {
+      "original": "unriped_tomato_6.jpeg",
+      "representante": "unriped_tomato_6.jpeg",
+      "sha256": "30f8761c3b84f4d642e461f98deacc4823bb1e2d870133e7595c8ea50f8ec388",
+      "phash": "1101000111000111001010101001101000010101101101010100110100111100"
+    },
+    {
+      "original": "unriped_tomato_60.jpeg",
+      "representante": "unriped_tomato_6.jpeg",
+      "sha256": "30f8761c3b84f4d642e461f98deacc4823bb1e2d870133e7595c8ea50f8ec388",
+      "phash": "1101000111000111001010101001101000010101101101010100110100111100"
+    },
+    {
+      "original": "unriped_tomato_62.jpeg",
+      "representante": "unriped_tomato_62.jpeg",
+      "sha256": "b22958cf4c94bc67c95e40e0cc8add375c892ed6293ed7a1f622113259031c52",
+      "phash": "1110111011010000100101011100111010010000010000010111010100110111"
+    },
+    {
+      "original": "unriped_tomato_64.jpeg",
+      "representante": "unriped_tomato_64.jpeg",
+      "sha256": "2f640cedc8e3ba37d669e182c211d349c16b99918bbc0194e37328d29dabca1f",
+      "phash": "1010100111110100100100110100001110110110001000101100101100101101"
+    },
+    {
+      "original": "unriped_tomato_65.jpeg",
+      "representante": "unriped_tomato_65.jpeg",
+      "sha256": "2b9052d3126f71b57191cf632b38a292da591fb392047ce1dcdabd4d860a1d82",
+      "phash": "1011001011101001010110011101110011000111100110110001000100000101"
+    },
+    {
+      "original": "unriped_tomato_68.jpeg",
+      "representante": "unriped_tomato_68.jpeg",
+      "sha256": "8bc9f0936b7a6b28225717713bf3cc8a5dd9a34f581dc5ebcfc2ff1ca6de8989",
+      "phash": "1111000001000000010110000110111110001111011010011010110011011100"
+    },
+    {
+      "original": "unriped_tomato_74.jpeg",
+      "representante": "unriped_tomato_74.jpeg",
+      "sha256": "a5904f5a24a6ff1aa9b23c2d9b14e0f19154033d1fce0847644dfc87ac393078",
+      "phash": "1110010110011110100001100001100110011001011000110110100101100110"
+    }
+  ]
+}
