@@ -1,0 +1,14 @@
+# Comandos executados (PowerShell na pasta da atividade)
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install ultralytics
+yolo checks
+yolo predict model=yolo26n.pt
+yolo predict model=yolo26n.pt source="https://ultralytics.com/images/bus.jpg" conf=0.25
+yolo detect train model=yolo26n.pt data=coco8.yaml epochs=3 imgsz=320 batch=2 device=cpu workers=0 project="resultados" name="treino_coco8"
+yolo predict model=yolo26n.pt source="imagens" conf=0.25 save=True project="resultados" name="proprias_025"
+yolo predict model=yolo26n.pt source="imagens/pessoa.jpg" conf=0.25 save=True project="resultados" name="pessoa_025"
+yolo predict model=yolo26n.pt source="imagens/pessoa.jpg" conf=0.70 save=True project="resultados" name="pessoa_070"
+yolo predict model="runs/detect/resultados/treino_coco8/weights/best.pt" source="imagens/pessoa.jpg" conf=0.25 save=True project="resultados" name="pessoa_pos_treino"
+
+# Arquivos fornecidos em imagens/: cachorro.png, carro.jpeg, pessoa.jpg.

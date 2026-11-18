@@ -1,0 +1,8 @@
+# Comandos executados (PowerShell na pasta da atividade)
+python prepare_dataset.py dataset/original/detection
+# A execução bem-sucedida usou name=treinamento1; como uma tentativa anterior deixou a pasta ocupada, o Ultralytics salvou como treinamento1-2.
+yolo detect train model="../Atividade_Pratica_YOLO_Windows/yolo26n.pt" data="dataset/yolo/data.yaml" epochs=20 imgsz=416 batch=4 device=cpu workers=0 project="resultados" name="treinamento1"
+yolo detect val model="runs/detect/resultados/treinamento1-2/weights/best.pt" data="dataset/yolo/data.yaml" split=test device=cpu project="resultados" name="avaliacao_teste"
+yolo detect predict model="runs/detect/resultados/treinamento1-2/weights/best.pt" source="dataset/yolo/images/test" conf=0.25 save=True save_txt=True save_conf=True project="resultados" name="conf025"
+yolo detect predict model="runs/detect/resultados/treinamento1-2/weights/best.pt" source="dataset/yolo/images/test" conf=0.70 save=True save_txt=True save_conf=True project="resultados" name="conf070"
+python compare_predictions.py

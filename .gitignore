@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.cache
+.env
+.env.*
+!.env.example
+kaggle.json
+access_token
+.kaggle/
+.pdf_tools/
+novas_execucoes/
+*.zip
+Thumbs.db
+Desktop.ini
+*.log

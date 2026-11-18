@@ -1,0 +1,6 @@
+# Comandos executados (PowerShell na pasta da atividade)
+python prepare_dataset.py dataset/original/detection
+yolo detect train model="../Atividade_Pratica_YOLO_Windows/yolo26n.pt" data="dataset/ready/data.yaml" epochs=20 imgsz=640 batch=4 device=cpu workers=0 project="resultados" name="treino_final"
+yolo detect val model="runs/detect/resultados/treino_final/weights/best.pt" data="dataset/ready/data.yaml" device=cpu project="resultados" name="validacao"
+yolo detect predict model="runs/detect/resultados/treino_final/weights/best.pt" source="dataset/ready/unseen/images" conf=0.25 save=True save_txt=True save_conf=True project="resultados" name="imagens_ineditas"
+python compare_unseen.py

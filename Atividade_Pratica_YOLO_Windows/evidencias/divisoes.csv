@@ -1,0 +1,9 @@
+divisao,imagem,anotacao
+train,images/train/000000000009.jpg,labels/train/000000000009.txt
+train,images/train/000000000025.jpg,labels/train/000000000025.txt
+train,images/train/000000000030.jpg,labels/train/000000000030.txt
+train,images/train/000000000034.jpg,labels/train/000000000034.txt
+val,images/val/000000000036.jpg,labels/val/000000000036.txt
+val,images/val/000000000042.jpg,labels/val/000000000042.txt
+val,images/val/000000000049.jpg,labels/val/000000000049.txt
+val,images/val/000000000061.jpg,labels/val/000000000061.txt

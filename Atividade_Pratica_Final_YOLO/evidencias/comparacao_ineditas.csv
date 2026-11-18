@@ -1,0 +1,7 @@
+﻿image,gt,pred,tp,fp,fn
+riped_tomato_29,1,1,1,0,0
+riped_tomato_47,2,2,2,0,0
+unriped_tomato_33,10,10,9,1,1
+unriped_tomato_41,1,1,1,0,0
+unriped_tomato_70,6,6,6,0,0
+TOTAL,20,20,19,1,1

@@ -1,0 +1,73 @@
+<!doctype html><html lang='pt-BR'><meta charset='utf-8'><title>Relatório técnico — Atividade prática final YOLO</title><style>
+@page { size: A4; margin: 17mm 16mm; }
+body { font: 10pt Arial, sans-serif; color: #202124; line-height: 1.42; }
+h1, h2, h3 { color: #174a68; page-break-after: avoid; }
+h1 { font-size: 21pt; border-bottom: 2px solid #174a68; padding-bottom: 5px; }
+h2 { font-size: 15pt; margin-top: 22px; }
+h3 { font-size: 12pt; margin-top: 16px; }
+p { margin: 7px 0; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 9pt; }
+th, td { border: 1px solid #aab4bd; padding: 5px 6px; text-align: left; vertical-align: top; }
+th { background: #e9f1f5; }
+figure { margin: 14px 0 20px; text-align: center; page-break-inside: avoid; }
+img { max-width: 100%; max-height: 155mm; object-fit: contain; }
+figcaption { color: #5d6770; font-size: 8pt; margin-top: 4px; }
+code, pre { background: #f2f4f5; font-family: Consolas, monospace; }
+code { padding: 1px 3px; }
+pre { white-space: pre-wrap; padding: 8px; font-size: 8.5pt; }
+a { color: #145b86; }
+blockquote { margin: 12px 0; padding: 9px 12px; border-left: 3px solid #ab7419; background: #fff8eb; }
+</style><body><h1>Relatório técnico — Atividade prática final YOLO</h1>
+<blockquote><strong>Correção após auditoria:</strong> foram encontradas fotos idênticas em divisões diferentes (ver ../docs/CONFERENCIA.md). As métricas abaixo registram a execução original com vazamento de dados e não comprovam generalização. Na final, todas as cinco imagens reservadas têm cópias no treino/validação e não atendem ao requisito de imagens inéditas. É necessário refazer a divisão, o treino e a avaliação.</blockquote>
+<p><strong>Nome:</strong> Kauan Reis Bueno <strong>Turma:</strong> 8 Período <strong>Data:</strong> 17/11/2026</p>
+<h2>1. Problema e motivação</h2>
+<p>O projeto detecta tomates em dois estágios de maturação: não maduro e maduro. A tarefa foi escolhida como exemplo de visão computacional aplicada à agricultura; caixas delimitadoras informam também a posição dos frutos na imagem.</p>
+<h2>2. Dataset e classes</h2>
+<p>Dataset: <strong>Ripe and Unripe Tomatoes Dataset</strong>, de Suman Kunwar, Kaggle: https://www.kaggle.com/datasets/sumn2u/riped-and-unriped-tomato-dataset/versions/2. Foram pareadas 177 imagens JPEG e anotações de detecção YOLO; mapeamento: classe 0 <code>nao_maduro</code> (original <code>unriped</code>) e classe 1 <code>maduro</code> (original <code>riped</code>). Licença declarada: CC BY-SA 4.0. Uma caixa de altura zero foi removida apenas das cópias preparadas. Divisão: 137 treino, 35 validação e cinco imagens inéditas.</p>
+<h2>3. Modelo e treinamento</h2>
+<p>Foi utilizado YOLO26n com pesos pré-treinados, 20 épocas, imagem 640, lote 4 e CPU (<code>workers=0</code>). O melhor checkpoint está em <code>modelo/best.pt</code>.</p>
+<h2>4. Métricas e interpretação</h2>
+<ul>
+<li>Precision: 0,874</li>
+<li>Recall: 0,800</li>
+<li>mAP50: 0,859</li>
+</ul>
+<p>Precision é a proporção das detecções emitidas que estão corretas. Recall é a proporção dos objetos reais que foram encontrados. mAP50 resume a precisão média por classe considerando como correspondência uma sobreposição IoU de pelo menos 0,50 entre caixa prevista e caixa anotada. Valores de validação no melhor checkpoint: mAP50-95 0,552, em 35 imagens e 210 instâncias.</p>
+<figure><img src="runs/detect/resultados/treino_final/results.png" alt="Curvas do treinamento final"><figcaption>Curvas do treinamento final</figcaption></figure>
+<h2>5. Imagens inéditas</h2>
+<p>A comparação entre as previsões e as anotações de referência foi feita nas cinco imagens reservadas por nome de arquivo. As previsões estão em <code>runs/detect/resultados/imagens_ineditas/</code> e as referências em <code>dataset/ready/unseen/labels_referencia/</code>. A auditoria posterior encontrou cópias idênticas dessas imagens em treino/validação; por isso, essa reserva não constitui uma avaliação em imagens inéditas.</p>
+<table><thead><tr><th>Imagem inédita</th><th>TP / FP / FN</th><th>Observação</th></tr></thead><tbody>
+<tr><td>riped_tomato_29.jpeg</td><td>1 / 0 / 0</td><td>Classe maduro localizada</td></tr>
+<tr><td>riped_tomato_47.jpeg</td><td>2 / 0 / 0</td><td>Duas caixas corretas</td></tr>
+<tr><td>unriped_tomato_33.jpeg</td><td>9 / 1 / 1</td><td>Um falso positivo e uma omissão</td></tr>
+<tr><td>unriped_tomato_41.jpeg</td><td>1 / 0 / 0</td><td>Classe nao_maduro localizada</td></tr>
+<tr><td>unriped_tomato_70.jpeg</td><td>6 / 0 / 0</td><td>Seis caixas corretas</td></tr>
+</tbody></table>
+<p>TP/FP/FN foram contados comparando classe e IoU ≥ 0,50 com as anotações reservadas. No total das cinco imagens (20 objetos anotados), houve 19 TP, 1 FP e 1 FN. As previsões ilustradas foram salvas em <code>runs/detect/resultados/imagens_ineditas/</code>; a tabela completa está em <code>evidencias/comparacao_ineditas.csv</code>.</p>
+<h3>Imagens com as detecções</h3>
+<figure><img src="runs/detect/resultados/imagens_ineditas/riped_tomato_29.jpg" alt="Tomates maduros: riped_tomato_29"><figcaption>Tomates maduros: riped_tomato_29</figcaption></figure>
+<figure><img src="runs/detect/resultados/imagens_ineditas/riped_tomato_47.jpg" alt="Tomates maduros: riped_tomato_47"><figcaption>Tomates maduros: riped_tomato_47</figcaption></figure>
+<figure><img src="runs/detect/resultados/imagens_ineditas/unriped_tomato_33.jpg" alt="Tomates não maduros: unriped_tomato_33"><figcaption>Tomates não maduros: unriped_tomato_33</figcaption></figure>
+<figure><img src="runs/detect/resultados/imagens_ineditas/unriped_tomato_41.jpg" alt="Tomate não maduro: unriped_tomato_41"><figcaption>Tomate não maduro: unriped_tomato_41</figcaption></figure>
+<figure><img src="runs/detect/resultados/imagens_ineditas/unriped_tomato_70.jpg" alt="Tomates não maduros: unriped_tomato_70"><figcaption>Tomates não maduros: unriped_tomato_70</figcaption></figure>
+<h2>6. Dificuldades e melhorias</h2>
+<p>Uma anotação de origem tinha altura zero e foi removida somente das cópias preparadas. O conjunto é pequeno e tem variedade limitada; nas cinco imagens inéditas houve um falso positivo e uma omissão. Mais imagens diversas, revisão de rótulos e caixas e validação em diferentes cenários ajudariam a medir e aumentar a generalização. Cinco imagens são uma demonstração didática, não prova de robustez operacional.</p>
+<h2>Respostas às seis questões</h2>
+<ol>
+<li><strong>Problema escolhido:</strong> localizar e classificar tomates em dois estágios de maturação; o tema oferece aplicação agrícola e classes visuais relacionadas.</li>
+<li><strong>Dados e classes:</strong> 177 imagens anotadas, distribuídas em 137 treino, 35 validação e cinco inéditas. Fonte Kaggle indicada acima; classes <code>nao_maduro</code> e <code>maduro</code>; arquivos JPEG e rótulos de caixas YOLO.</li>
+<li><strong>Modelo e épocas:</strong> YOLO26n pré-treinado, 20 épocas, <code>imgsz=640</code>, <code>batch=4</code>, CPU (<code>workers=0</code>).</li>
+<li><strong>Métricas:</strong> Precision 0,874, Recall 0,800, mAP50 0,859 (validação; mAP50-95 0,552). Precision mede acerto entre as previsões, recall mede cobertura dos objetos reais, e mAP50 agrega a precisão por classe com IoU 0,50.</li>
+<li><strong>Reconhecimento inédito:</strong> quatro imagens tiveram todas as caixas correspondidas; em <code>unriped_tomato_33.jpeg</code> houve um falso positivo e uma omissão. No conjunto de cinco, 19 TP, 1 FP e 1 FN comparando classe e IoU ≥0,50.</li>
+<li><strong>Dificuldades e melhorias:</strong> uma caixa inválida (altura zero) foi removida nas cópias; o conjunto e a reserva inédita são pequenos. Mais exemplos diversos e rótulos revisados podem melhorar a generalização.</li>
+</ol>
+<h2>Evidências e arquivos da entrega</h2>
+<p>Os arquivos que acompanham este relatório estão organizados na pasta da atividade:</p>
+<ul>
+<li><strong>Dados e configuração:</strong> imagens e anotações em <code>dataset/ready/</code>, com o arquivo <code>data.yaml</code>. A origem e a licença do dataset estão descritas na seção 2.</li>
+<li><strong>Modelo treinado:</strong> pesos salvos em <code>modelo/best.pt</code>.</li>
+<li><strong>Código e comandos:</strong> scripts <code>prepare_dataset.py</code> e <code>compare_unseen.py</code>, além de <code>comandos.txt</code>.</li>
+<li><strong>Resultados do treinamento:</strong> parâmetros e métricas por época em <code>evidencias/</code>; gráficos em <code>runs/detect/resultados/treino_final/</code>.</li>
+<li><strong>Detecções:</strong> cinco imagens com as caixas previstas e arquivos com os escores em <code>runs/detect/resultados/imagens_ineditas/</code>.</li>
+</ul>
+<p>As métricas e predições apresentadas correspondem aos artefatos salvos nessa execução.</p></body></html>

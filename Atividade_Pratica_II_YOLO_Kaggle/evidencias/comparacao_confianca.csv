@@ -1,0 +1,8 @@
+﻿image,gt,tp025,fp025,fn025,tp070,fp070,fn070
+riped_tomato_15,3,3,0,0,3,0,0
+riped_tomato_17,2,2,0,0,2,0,0
+unriped_tomato_2,6,5,3,1,2,1,4
+unriped_tomato_39,8,8,0,0,8,0,0
+unriped_tomato_61,11,8,0,3,6,0,5
+ALL19,gt,tp025,fp025,fn025,tp070,fp070,fn070
+ALL19,,92,8,9,79,3,22

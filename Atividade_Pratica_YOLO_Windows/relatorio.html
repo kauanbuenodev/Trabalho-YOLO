@@ -1,0 +1,63 @@
+<!doctype html><html lang='pt-BR'><meta charset='utf-8'><title>Relatório — Atividade prática: YOLO no Windows</title><style>
+@page { size: A4; margin: 17mm 16mm; }
+body { font: 10pt Arial, sans-serif; color: #202124; line-height: 1.42; }
+h1, h2, h3 { color: #174a68; page-break-after: avoid; }
+h1 { font-size: 21pt; border-bottom: 2px solid #174a68; padding-bottom: 5px; }
+h2 { font-size: 15pt; margin-top: 22px; }
+h3 { font-size: 12pt; margin-top: 16px; }
+p { margin: 7px 0; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 9pt; }
+th, td { border: 1px solid #aab4bd; padding: 5px 6px; text-align: left; vertical-align: top; }
+th { background: #e9f1f5; }
+figure { margin: 14px 0 20px; text-align: center; page-break-inside: avoid; }
+img { max-width: 100%; max-height: 155mm; object-fit: contain; }
+figcaption { color: #5d6770; font-size: 8pt; margin-top: 4px; }
+code, pre { background: #f2f4f5; font-family: Consolas, monospace; }
+code { padding: 1px 3px; }
+pre { white-space: pre-wrap; padding: 8px; font-size: 8.5pt; }
+a { color: #145b86; }
+blockquote { margin: 12px 0; padding: 9px 12px; border-left: 3px solid #ab7419; background: #fff8eb; }
+</style><body><h1>Relatório — Atividade prática: YOLO no Windows</h1>
+<p><strong>Nome:</strong> Kauan Reis Bueno <strong>Turma:</strong> 8 Período <strong>Data:</strong> 17/11/2026</p>
+<h2>Objetivo e procedimento</h2>
+<p>O objetivo foi configurar Python e um ambiente virtual no Windows, instalar Ultralytics, executar detecção com o modelo pré-treinado YOLO26n, comparar dois limiares de confiança e realizar um treino experimental no COCO8. Os comandos estão em <code>README.md</code>.</p>
+<h2>Respostas às perguntas</h2>
+<h3>1. O que é Python e por que é usado em IA?</h3>
+<p>Python é uma linguagem de programação de alto nível, com sintaxe acessível e um ecossistema amplo de bibliotecas para dados, aprendizado de máquina e visão computacional. Isso permite combinar preparação dos dados, treinamento e inferência com ferramentas como PyTorch e Ultralytics.</p>
+<h3>2. Para que serve um ambiente virtual?</h3>
+<p>Um ambiente virtual mantém as dependências deste projeto separadas das de outros projetos. Sem esse isolamento, versões incompatíveis de uma biblioteca podem substituir umas às outras e quebrar programas diferentes; também fica mais difícil reproduzir a configuração usada.</p>
+<h3>3. Qual a diferença entre CPU e GPU em redes neurais?</h3>
+<p>CPU é um processador de uso geral, adequado para executar o YOLO em tarefas pequenas, mas tende a levar mais tempo. GPU executa muitas operações numéricas em paralelo e costuma acelerar treinamento e inferência de redes neurais, desde que haja hardware e suporte compatíveis.</p>
+<h3>4. Classificar a imagem inteira é diferente de localizar o ônibus?</h3>
+<p>Classificação atribui uma ou mais categorias à imagem como um todo. Detecção também prevê uma caixa delimitadora para cada objeto e associa a ela uma classe e um escore, indicando onde o ônibus aparece.</p>
+<h3>5. O que muda ao aumentar <code>conf</code> de 0,25 para 0,70?</h3>
+<p>O limiar mais alto descarta previsões cujo escore é inferior a 0,70. Em geral, aparecem menos caixas; algumas previsões fracas incorretas podem desaparecer, mas objetos reais também podem deixar de ser detectados. Nesta execução, a foto de pessoa manteve uma detecção nos dois limiares; na imagem pública do ônibus, o total de pessoas detectadas caiu de quatro para três.</p>
+<h3>6. O treino experimental necessariamente melhora o modelo?</h3>
+<p>Não. O COCO8 tem apenas oito imagens e serve para conferir o funcionamento do pipeline, não para produzir um detector robusto. Poucos exemplos podem não representar a variedade do mundo real; o ajuste pode memorizar particularidades do conjunto e piorar a generalização. <code>best.pt</code> é o checkpoint escolhido pelo critério de validação do treino, o que não garante que ele supere os pesos iniciais em toda imagem.</p>
+<h2>Resultados observados</h2>
+<ul>
+<li>Versão do Python: 3.12.10</li>
+<li>Verificação Ultralytics: 8.4.214, PyTorch 2.15.0+cpu, Windows 11, CPU AMD Ryzen 5 5500U, 12 CPUs, 5,85 GB de RAM; sem GPU/CUDA.</li>
+<li>Modelo/pesos iniciais: YOLO26n (<code>yolo26n.pt</code>)</li>
+<li>Dataset experimental: COCO8 (4 imagens de treino e 4 de validação, conforme o enunciado)</li>
+<li>Treino: 3 épocas, <code>imgsz=320</code>, <code>batch=2</code>, CPU</li>
+<li>Caminho de <code>best.pt</code>: <code>modelo/best.pt</code>.</li>
+<li>Métricas COCO8 após 3 épocas: Precision 0,705; Recall 0,633; mAP50 0,796; mAP50-95 0,576 (4 imagens de validação e 17 instâncias).</li>
+<li>Primeira predição automática: <code>bus.jpg</code> teve 4 pessoas e 1 ônibus; <code>zidane.jpg</code>, 2 pessoas e 1 gravata.</li>
+<li>Imagem pública <code>bus.jpg</code>, modelo pré-treinado: <code>conf=0.25</code> detectou 4 pessoas e 1 ônibus; <code>conf=0.70</code> detectou 3 pessoas e 1 ônibus. Uma detecção de pessoa ficou abaixo do limiar alto.</li>
+<li>Imagem pública <code>bus.jpg</code>, checkpoint após treino: 4 pessoas e 1 ônibus. A contagem coincide com o modelo pré-treinado em 0,25; isso não demonstra melhora. As imagens com as caixas previstas estão incluídas na seção Evidências.</li>
+<li>Fotos próprias processadas com <code>conf=0.25</code>: <code>cachorro.png</code> → 1 cachorro (confiança 0,795); <code>carro.jpeg</code> → 1 carro (0,863); <code>pessoa.jpg</code> → 1 pessoa (0,889).</li>
+<li>Comparação na mesma foto (<code>pessoa.jpg</code>): <code>conf=0.25</code> e <code>conf=0.70</code> retornaram 1 pessoa em ambos os casos. A predição manteve confiança de aproximadamente 0,889, acima dos dois limiares.</li>
+<li>Comparação antes/depois do treino COCO8 em <code>pessoa.jpg</code>: os dois modelos retornaram 1 pessoa. Essa contagem não demonstra melhora; COCO8 tem só quatro exemplos de treino e quatro de validação e não é um conjunto personalizado de pessoas.</li>
+<li>Análise crítica: as três classes escolhidas foram localizadas nas imagens fornecidas. O limiar alto não removeu a detecção da foto de pessoa porque seu escore estava acima de 0,70. Iluminação, resolução, oclusão e ângulo podem alterar as previsões; confiança não é probabilidade calibrada. Os resultados visuais apresentados na seção Evidências permitem observar a posição das caixas e as classes previstas.</li>
+</ul>
+<h2>Evidências</h2>
+<p>Parâmetros e métricas do treino: <code>evidencias/treino_coco8_args.yaml</code> e <code>evidencias/treino_coco8_results.csv</code>. Detecções das três fotos e arquivos com caixas/escores em <code>runs/detect/resultados/proprias_025/</code> e <code>proprias_com_scores/</code>; comparações em <code>pessoa_025/</code>, <code>pessoa_070/</code> e <code>pessoa_pos_treino/</code>. Pesos em <code>modelo/best.pt</code>. Os registros incluídos consistem em métricas, parâmetros e imagens geradas; não foram incluídas capturas de tela do terminal.</p>
+<figure><img src="runs/detect/resultados/treino_coco8/results.png" alt="Curvas de treino e validação COCO8"><figcaption>Curvas de treino e validação COCO8</figcaption></figure>
+<figure><img src="runs/detect/resultados/proprias_025/cachorro.jpg" alt="Cachorro detectado"><figcaption>Cachorro detectado</figcaption></figure>
+<figure><img src="runs/detect/resultados/proprias_025/carro.jpg" alt="Carro detectado"><figcaption>Carro detectado</figcaption></figure>
+<figure><img src="runs/detect/resultados/pessoa_025/pessoa.jpg" alt="Pessoa detectada"><figcaption>Pessoa detectada</figcaption></figure>
+<figure><img src="runs/detect/resultados/onibus_025/bus.jpg" alt="Imagem do ônibus com limiar 0,25"><figcaption>Imagem do ônibus com limiar 0,25</figcaption></figure>
+<figure><img src="runs/detect/resultados/onibus_070/bus.jpg" alt="Imagem do ônibus com limiar 0,70"><figcaption>Imagem do ônibus com limiar 0,70</figcaption></figure>
+<h2>Limitações</h2>
+<p>O ambiente, o treino COCO8 e as inferências nas imagens públicas e próprias foram executados. As saídas e métricas estão salvas. Este relatório apresenta as imagens detectadas e as métricas salvas. As capturas de tela do terminal solicitadas no enunciado não integram as evidências disponíveis.</p></body></html>

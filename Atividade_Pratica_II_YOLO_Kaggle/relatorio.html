@@ -1,0 +1,77 @@
+<!doctype html><html lang='pt-BR'><meta charset='utf-8'><title>Relatório técnico — Atividade prática II</title><style>
+@page { size: A4; margin: 17mm 16mm; }
+body { font: 10pt Arial, sans-serif; color: #202124; line-height: 1.42; }
+h1, h2, h3 { color: #174a68; page-break-after: avoid; }
+h1 { font-size: 21pt; border-bottom: 2px solid #174a68; padding-bottom: 5px; }
+h2 { font-size: 15pt; margin-top: 22px; }
+h3 { font-size: 12pt; margin-top: 16px; }
+p { margin: 7px 0; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 9pt; }
+th, td { border: 1px solid #aab4bd; padding: 5px 6px; text-align: left; vertical-align: top; }
+th { background: #e9f1f5; }
+figure { margin: 14px 0 20px; text-align: center; page-break-inside: avoid; }
+img { max-width: 100%; max-height: 155mm; object-fit: contain; }
+figcaption { color: #5d6770; font-size: 8pt; margin-top: 4px; }
+code, pre { background: #f2f4f5; font-family: Consolas, monospace; }
+code { padding: 1px 3px; }
+pre { white-space: pre-wrap; padding: 8px; font-size: 8.5pt; }
+a { color: #145b86; }
+blockquote { margin: 12px 0; padding: 9px 12px; border-left: 3px solid #ab7419; background: #fff8eb; }
+</style><body><h1>Relatório técnico — Atividade prática II</h1>
+<blockquote><strong>Correção após auditoria:</strong> foram encontradas fotos idênticas em divisões diferentes (ver ../docs/CONFERENCIA.md). As métricas abaixo registram a execução original com vazamento de dados e não comprovam generalização. Na final, todas as cinco imagens reservadas têm cópias no treino/validação e não atendem ao requisito de imagens inéditas. É necessário refazer a divisão, o treino e a avaliação.</blockquote>
+<p><strong>Nome:</strong> Kauan Reis Bueno <strong>Turma:</strong> 8 Período <strong>Data:</strong> 17/11/2026</p>
+<h2>Dataset e problema</h2>
+<p>Foi escolhido o <strong>Ripe and Unripe Tomatoes Dataset</strong>, publicado no Kaggle por Suman Kunwar. A descrição informa 177 imagens JPEG anotadas para detecção, duas classes (<code>0: unriped</code>, <code>1: riped</code>) e arquivos YOLO com <code>classe x_centro y_centro largura altura</code>. A finalidade é distinguir frutos em diferentes estágios de maturação, aplicação ligada à automação agrícola. Licença declarada: CC BY-SA 4.0. Fonte: https://www.kaggle.com/datasets/sumn2u/riped-and-unriped-tomato-dataset/versions/2.</p>
+<h2>Respostas</h2>
+<h3>1. Dataset escolhido</h3>
+<p>Dataset público do Kaggle sobre tomates maduros e não maduros; foram pareadas 177 imagens JPEG com rótulos YOLO de duas classes. A licença indicada na página é CC BY-SA 4.0. Foi identificado um rótulo degenerado (altura zero); essa caixa foi removida apenas na cópia preparada, sem alterar o original.</p>
+<h3>2. O que é bounding box e por que normalizar?</h3>
+<p>Bounding box é um retângulo que delimita a posição e o tamanho de um objeto na imagem. No formato YOLO, registram-se centro X, centro Y, largura e altura em relação às dimensões da imagem, entre 0 e 1. A normalização torna as coordenadas independentes da resolução em pixels e facilita usar tamanhos de imagem diferentes.</p>
+<h3>3. Para que serve <code>data.yaml</code>?</h3>
+<p>Ele informa ao treinamento onde estão as imagens de treino, validação e teste e qual nome corresponde a cada ID de classe. Se a ordem estiver errada, o modelo aprenderá ou reportará nomes trocados, mesmo que as caixas estejam geometricamente corretas.</p>
+<h3>4. Treinamento e inferência</h3>
+<p>No treinamento, imagens anotadas são usadas para ajustar os pesos da rede, reduzindo erros de localização e classificação. Na inferência, os pesos já ajustados são aplicados a imagens de entrada para prever caixas, classes e escores, sem atualizar o modelo.</p>
+<h3>5. Boa precisão com objetos perdidos</h3>
+<p>Sim. Precisão alta significa que poucas detecções emitidas são falsas; recall baixo significa que muitos objetos reais ficaram sem detecção. Por exemplo, um modelo pode emitir uma caixa apenas quando tem alta confiança e ainda omitir vários objetos.</p>
+<h3>6. Por que poucos acertos não provam robustez?</h3>
+<p>Alguns exemplos não cobrem variações de iluminação, escala, fundo, ângulo, oclusão e aparência. O desempenho em imagens específicas não garante generalização; por isso são necessários dados representativos e avaliação em imagens separadas do treino.</p>
+<h3>7. Efeito de <code>conf=0.25</code> versus <code>conf=0.70</code></h3>
+<p>O limiar 0,70 elimina previsões com escore inferior a ele, então reduz o número de caixas. Nos 19 testes, o total passou de 100 caixas (conf=0,25) para 82 (conf=0,70). Comparando as caixas com os rótulos de referência em IoU ≥ 0,50, os acertos caíram de 92 para 79, falsos positivos de 8 para 3 e falsos negativos subiram de 9 para 22. Portanto, 13 detecções corretas desapareceram e 5 falsos positivos foram removidos. Os resultados das cinco imagens da tabela também mostram essa troca.</p>
+<h2>Configuração e resultados experimentais</h2>
+<ul>
+<li>Quantidade pareada total: 177 imagens; 868 caixas válidas após remoção de uma caixa de altura zero.</li>
+<li>Treino / validação / teste: 123 / 35 / 19 imagens (seed=42; 70/20/10 aproximado).</li>
+<li>Modelo e épocas: YOLO26n pré-treinado, 20 épocas, <code>imgsz=416</code>, <code>batch=4</code>, CPU (<code>workers=0</code>)</li>
+<li>Métricas de validação do treino: Precision 0,923; Recall 0,922; mAP50 0,948; mAP50-95 0,637.</li>
+<li>Métricas no teste separado: Precision 0,916; Recall 0,919; mAP50 0,944; mAP50-95 0,639 (19 imagens, 101 objetos anotados).</li>
+<li><code>best.pt</code>: <code>modelo/best.pt</code>.</li>
+</ul>
+<table><thead><tr><th>Imagem de teste</th><th>Objetos anotados</th><th>TP / FP / FN em 0,25</th><th>TP / FP / FN em 0,70</th></tr></thead><tbody>
+<tr><td>riped_tomato_15</td><td>3</td><td>3 / 0 / 0</td><td>3 / 0 / 0</td></tr>
+<tr><td>riped_tomato_17</td><td>2</td><td>2 / 0 / 0</td><td>2 / 0 / 0</td></tr>
+<tr><td>unriped_tomato_2</td><td>6</td><td>5 / 3 / 1</td><td>2 / 1 / 4</td></tr>
+<tr><td>unriped_tomato_39</td><td>8</td><td>8 / 0 / 0</td><td>8 / 0 / 0</td></tr>
+<tr><td>unriped_tomato_61</td><td>11</td><td>8 / 0 / 3</td><td>6 / 0 / 5</td></tr>
+</tbody></table>
+<p>TP/FP/FN foram calculados com correspondência de classe e IoU ≥ 0,50. As predições anotadas estão em <code>runs/detect/resultados/conf025/</code> e <code>conf070/</code>.</p>
+<h3>Exemplos visuais (original + predição em 0,25 e 0,70)</h3>
+<h4>riped_tomato_15</h4>
+<figure><img src="runs/detect/resultados/conf025/riped_tomato_15.jpg" alt="Predição com conf 0,25"><figcaption>Predição com conf 0,25</figcaption></figure>
+<figure><img src="runs/detect/resultados/conf070/riped_tomato_15.jpg" alt="Predição com conf 0,70"><figcaption>Predição com conf 0,70</figcaption></figure>
+<h4>riped_tomato_17</h4>
+<figure><img src="runs/detect/resultados/conf025/riped_tomato_17.jpg" alt="Predição com conf 0,25"><figcaption>Predição com conf 0,25</figcaption></figure>
+<figure><img src="runs/detect/resultados/conf070/riped_tomato_17.jpg" alt="Predição com conf 0,70"><figcaption>Predição com conf 0,70</figcaption></figure>
+<h4>unriped_tomato_2</h4>
+<figure><img src="runs/detect/resultados/conf025/unriped_tomato_2.jpg" alt="Predição com conf 0,25"><figcaption>Predição com conf 0,25</figcaption></figure>
+<figure><img src="runs/detect/resultados/conf070/unriped_tomato_2.jpg" alt="Predição com conf 0,70"><figcaption>Predição com conf 0,70</figcaption></figure>
+<h4>unriped_tomato_39</h4>
+<figure><img src="runs/detect/resultados/conf025/unriped_tomato_39.jpg" alt="Predição com conf 0,25"><figcaption>Predição com conf 0,25</figcaption></figure>
+<figure><img src="runs/detect/resultados/conf070/unriped_tomato_39.jpg" alt="Predição com conf 0,70"><figcaption>Predição com conf 0,70</figcaption></figure>
+<h4>unriped_tomato_61</h4>
+<figure><img src="runs/detect/resultados/conf025/unriped_tomato_61.jpg" alt="Predição com conf 0,25"><figcaption>Predição com conf 0,25</figcaption></figure>
+<figure><img src="runs/detect/resultados/conf070/unriped_tomato_61.jpg" alt="Predição com conf 0,70"><figcaption>Predição com conf 0,70</figcaption></figure>
+<h2>Organização e evidências</h2>
+<p><code>dataset/yolo/</code> contém as divisões e <code>data.yaml</code>; <code>runs/detect/resultados/</code> contém os artefatos do Ultralytics; <code>evidencias/</code> contém parâmetros e métricas do treino. As pastas <code>conf025/</code> e <code>conf070/</code> têm as cinco imagens selecionadas e as demais predições anotadas. A autoria, a origem e a licença do dataset estão registradas na seção Dataset e problema.</p>
+<figure><img src="runs/detect/resultados/treinamento1-2/results.png" alt="Curvas do treinamento na validação"><figcaption>Curvas do treinamento na validação</figcaption></figure>
+<h2>Conclusão</h2>
+<p>O modelo atingiu métricas altas neste teste de 19 imagens, mas o tamanho e a origem única do dataset limitam a generalização. O limiar 0,70 reduziu falsos positivos, mas perdeu mais objetos corretos. A caixa degenerada encontrada mostra a necessidade de revisar anotações; mais imagens diversas e uma revisão das caixas ajudariam a avaliar e melhorar a robustez.</p></body></html>
